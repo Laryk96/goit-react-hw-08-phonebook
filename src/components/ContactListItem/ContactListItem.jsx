@@ -10,7 +10,6 @@ import {
 
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
-import { IconButton } from '@mui/material';
 
 const ContactListItem = ({ id, name, phone }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();

@@ -1,11 +1,10 @@
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import {
   Container,
   Form,
   StyledButton,
   StyledInput,
 } from 'components/SignUp/SignUp.styled';
-import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   return (

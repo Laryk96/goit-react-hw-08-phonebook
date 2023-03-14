@@ -43,9 +43,8 @@ const StyledInput = styled(TextField)({
 
 const StyledButton = styled(Button)({
   width: '100%',
+
   borderRadius: '30px',
-  boxShadow: 'none',
-  textTransform: 'none',
   fontSize: 16,
   textTransform: 'uppercase',
   boxShadow: '0 0 20px rgba(255,255,255,0.5)',

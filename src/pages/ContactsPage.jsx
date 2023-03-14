@@ -1,4 +1,3 @@
-import { SubTitle, Title } from 'components/App/App.styled';
 import ContactForm from 'components/ContactForm';
 import Contacts from 'components/Contacts/Contacts';
 
@@ -14,4 +13,3 @@ const ContactsPage = () => {
 };
 
 export default ContactsPage;
-// <Title>Phonebook</Title>;      <SubTitle>Contacts</SubTitle>;
