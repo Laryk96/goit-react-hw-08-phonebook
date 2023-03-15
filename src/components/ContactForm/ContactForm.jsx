@@ -48,8 +48,8 @@ const ContactForm = () => {
       <Form>
         <SubTitle>Create New contact</SubTitle>
         <Label>
-          <span> Name</span>
           <Input
+            placeholder="Name"
             type="text"
             name="name"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
@@ -58,8 +58,8 @@ const ContactForm = () => {
           <ErrorMessage name="name" component="span" />
         </Label>
         <Label>
-          <span> Phone</span>
           <Input
+            placeholder="Phone"
             type="tel"
             name="phone"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

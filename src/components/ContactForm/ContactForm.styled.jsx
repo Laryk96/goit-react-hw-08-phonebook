@@ -12,15 +12,17 @@ const Label = styled.label`
 `;
 
 const Form = styled(Forma)`
+  position: sticky;
+  top: 100px;
   width: 400px;
-  min-height: 300px;
-  max-height: 500px;
+  min-height: 250px;
+  max-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 30px;
-  padding: 60px 20px;
+  padding: 20px;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 
@@ -29,10 +31,6 @@ const Form = styled(Forma)`
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
   color: #fff;
-  & span {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
 `;
 
 const Input = styled(Field)`
@@ -49,6 +47,12 @@ const Input = styled(Field)`
   &:focus,
   &:hover {
     border: 2px solid orange;
+  }
+
+  &:placeholder-shown {
+    color: black;
+    font-size: 14px;
+    font-weight: 700;
   }
 `;
 

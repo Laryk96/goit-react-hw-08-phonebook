@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+// import bgd from 'images/background.jpg';
 
 const Container = styled.main`
   flex: 1;
@@ -9,9 +10,5 @@ const Container = styled.main`
   padding-right: 5px;
   max-width: 1440px;
 `;
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
-export { Container, Wrapper };
+
+export { Container };
