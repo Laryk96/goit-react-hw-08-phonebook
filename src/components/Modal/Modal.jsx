@@ -1,4 +1,4 @@
-import { Box, margin } from '@mui/system';
+import { Box } from '@mui/system';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import {
