@@ -12,7 +12,7 @@ import { Form as Container } from 'components/SignUp/SignUp.styled';
 
 const Contacts = () => {
   const { data = [], isFetching } = useGetContactsQuery();
-  console.log(data.length);
+
   if (data.length <= 0) {
     return (
       <Container component="div" sx={{ width: '45%', border: 'none' }}>
