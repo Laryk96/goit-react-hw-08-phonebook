@@ -69,20 +69,34 @@ const StyledButton = styled(Button)({
   },
 });
 
-const Form = styled(Box)({
-  width: '400px',
-  display: 'flex',
+// const Form = styled(Box)({
+//   width: '400px',
+//   display: 'flex',
 
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  gap: '30px',
-  padding: '60px 20px 40px 20px',
-  backgroundColor: 'rgba(0,0,0,0.3)',
-  borderRadius: '10px',
-  border: '2px solid rgba(255,255,255,0.4)',
-  color: '#fff',
-});
+//   alignItems: 'center',
+//   justifyContent: 'center',
+//   flexDirection: 'column',
+//   gap: '30px',
+//   padding: '60px 20px 40px 20px',
+//   backgroundColor: 'rgba(0,0,0,0.3)',
+//   borderRadius: '10px',
+//   // border: '2px solid rgba(255,255,255,0.4)',
+//   color: '#fff',
+// });
+
+const Form = styled(Box)`
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 60px 20px 40px 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+`;
 
 const Container = styled(Box)`
   display: flex;

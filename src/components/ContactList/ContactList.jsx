@@ -9,37 +9,33 @@ import { useSelector } from 'react-redux';
 
 const ContactList = () => {
   const filter = useSelector(selectFilter);
-  const { data, error, isLoading } = useGetContactsQuery();
+  const { data, isLoading } = useGetContactsQuery();
   const contacts = contactsFiltration(data, filter);
 
+  if (isLoading) {
+    return <h2 style={{ textAlign: 'center' }}>loading...</h2>;
+  }
   return (
     <>
-      {!isLoading && !error ? (
-        <Label>
-          <Wrapper>
-            <i>
-              <BsPersonSquare />
-            </i>
-            <span>Name:</span>
-          </Wrapper>
-          <Wrapper>
-            <i>
-              <i>
-                <BsPhoneFill />
-              </i>
-            </i>
-            <span>Tell:</span>
-          </Wrapper>
-        </Label>
-      ) : (
-        <h2 style={{ textAlign: 'center' }}>loading...</h2>
-      )}
+      {isLoading && <h2>loading...</h2>}
+      <Label>
+        <Wrapper>
+          <i>
+            <BsPersonSquare />
+          </i>
+          <span>Name:</span>
+        </Wrapper>
+        <Wrapper>
+          <i>
+            <BsPhoneFill />
+          </i>
+          <span>Tell:</span>
+        </Wrapper>
+      </Label>
       <ContactsList>
-        {!isLoading &&
-          !error &&
-          contacts.map(({ id, name, phone }) => (
-            <ContactListItem key={id} id={id} name={name} phone={phone} />
-          ))}
+        {contacts.map(({ id, name, phone }) => (
+          <ContactListItem key={id} id={id} name={name} phone={phone} />
+        ))}
       </ContactsList>
     </>
   );

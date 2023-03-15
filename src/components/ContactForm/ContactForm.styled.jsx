@@ -23,7 +23,8 @@ const Form = styled(Forma)`
   padding: 60px 20px;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
   color: #fff;
   & span {
     font-size: 16px;
@@ -49,24 +50,27 @@ const Input = styled(Field)`
 `;
 
 const Button = styled.button`
+  display: block;
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px 30px;
+
   background-image: linear-gradient(
     to right,
     #fdfc47 0%,
     #24fe41 51%,
     #fdfc47 100%
   );
-  margin-top: 10px;
-  width: 100%;
-  padding: 10px 30px;
+
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;
+  color: #212121;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   border-radius: 10px;
-  display: block;
 
+  font-size: 16px;
   &:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;

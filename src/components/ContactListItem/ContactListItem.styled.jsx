@@ -19,33 +19,11 @@ const ContactItem = styled.li`
     width: 27%;
     text-align: center;
   }
+
+  &:hover {
+    background-color: #212121c4;
+  }
 `;
-// const Button = styled.button`
-//   width: 100px;
-//   height: 28px;
-//   font-size: 18px;
-
-//   color: #212121;
-//   text-align: center;
-//   text-transform: uppercase;
-//   transition: 0.5s;
-//   background-size: 200% auto;
-//   box-shadow: 0 0 20px #eee;
-//   border-radius: 10px;
-//   display: block;
-
-//   &:hover {
-//     background-image: linear-gradient(
-//       to right,
-//       #e52d27 0%,
-//       #b31217 51%,
-//       #e52d27 100%
-//     );
-//     background-position: right center;
-//     color: #fff;
-//     text-decoration: none;
-//   }
-// `;
 const ContactName = styled.p`
   display: flex;
 `;
@@ -73,6 +51,8 @@ const WrapperIcon = styled.div`
   width: 15%;
   height: 100%;
   display: flex;
+  background-color: #483343;
+  border-radius: 25px;
 `;
 
 const Button = muiStyled(IconButton)`

@@ -5,8 +5,8 @@ const Container = styled.main`
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
   max-width: 1440px;
 `;
 const Wrapper = styled.div`

@@ -1,11 +1,54 @@
+import { Badge } from '@mui/material';
+import { Box } from '@mui/system';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import { Stack } from '@mui/system';
+import { CircularProgress } from '@mui/material';
+
+import { useGetContactsQuery } from 'redux/contactsSlice';
+import { SubTitle } from 'components/App/App.styled';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
 import { Form as Container } from 'components/SignUp/SignUp.styled';
 
 const Contacts = () => {
+  const { data = [], isFetching } = useGetContactsQuery();
+  console.log(data.length);
+  if (data.length <= 0) {
+    return (
+      <Container component="div" sx={{ width: '45%', border: 'none' }}>
+        <SubTitle>There will be your contacts here</SubTitle>
+      </Container>
+    );
+  }
+
   return (
-    <Container component="div" sx={{ width: '40%' }}>
+    <Container component="div" sx={{ minWidth: '600px', maxWidth: '45%' }}>
       <Filter />
+      <Box component="div" sx={{ position: 'relative', width: '100%' }}>
+        <SubTitle>Contacts</SubTitle>
+        <Badge
+          badgeContent={data.length}
+          color="secondary"
+          sx={{ position: 'absolute', top: 10, right: 0 }}
+        >
+          <ContactsIcon color="#fff" />
+        </Badge>
+        {isFetching && (
+          <Stack
+            sx={{
+              color: 'grey.500',
+              position: 'absolute',
+
+              right: '50%',
+              transform: 'translate(50%,0)',
+            }}
+            spacing={2}
+            direction="row"
+          >
+            <CircularProgress color="success" />
+          </Stack>
+        )}
+      </Box>
       <ContactList />
     </Container>
   );

@@ -7,8 +7,7 @@ const Label = styled.label`
   justify-content: center;
   gap: 10px;
   width: 100%;
-  margin-bottom: 30px;
-
+  margin-bottom: 10px;
   & span {
     font-weight: 500;
     font-size: 22px;
