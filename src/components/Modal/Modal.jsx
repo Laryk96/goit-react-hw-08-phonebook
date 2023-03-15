@@ -42,7 +42,7 @@ const Modal = ({ id, name, phone, onClose }) => {
       }, 1000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess]);
+  }, [isUninitialized]);
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -55,19 +55,19 @@ const Modal = ({ id, name, phone, onClose }) => {
 
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
-  console.log(isLoading);
-  console.log(isSuccess);
+
   return ReactDOM.createPortal(
     <Backdrop onClick={() => onClose(false)}>
-      <ModalBody>
-        <CloseBtn>
+      <ModalBody onClick={e => e.stopPropagation()}>
+        <CloseBtn onClick={() => onClose(false)}>
           <Icon />
         </CloseBtn>
         <Icons>
           <img
             src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
             alt="avatar"
-            width={60}
+            width={70}
+            style={{ borderRadius: '50%' }}
           />
         </Icons>
         <ContactItem>
@@ -102,7 +102,6 @@ const Modal = ({ id, name, phone, onClose }) => {
         >
           <ContactItem>
             <StyledInput
-              required
               label="Name"
               name="name"
               type="text"
@@ -111,7 +110,6 @@ const Modal = ({ id, name, phone, onClose }) => {
             />
 
             <StyledInput
-              required
               name="phone"
               label="Phone"
               type="text"
