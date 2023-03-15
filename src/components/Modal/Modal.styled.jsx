@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Backdrop = styled.div`
   position: fixed;
@@ -16,6 +17,7 @@ const Backdrop = styled.div`
 `;
 
 const ModalBody = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -50,9 +52,25 @@ const StyledButton = styled(IconButton)`
   margin-top: 20px;
   color: #fff;
 
+  transition: color 150ms ease-in-out;
   &:hover {
-    color: yellow;
+    color: rgb(26, 172, 48);
   }
 `;
 
-export { Backdrop, ModalBody, ContactItem, StyledButton };
+const CloseBtn = styled(IconButton)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`;
+
+const Icon = styled(CloseIcon)`
+  color: #fff;
+
+  transition: color 150ms ease-in-out;
+  &:hover {
+    color: red;
+  }
+`;
+
+export { Backdrop, ModalBody, ContactItem, StyledButton, CloseBtn, Icon };

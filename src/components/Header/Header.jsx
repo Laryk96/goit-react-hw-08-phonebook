@@ -1,18 +1,11 @@
-import { AppBar, Button, Toolbar, Typography } from '@mui/material';
-
+import { Button, Toolbar, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+
+import { Header as AppBar } from './Header.styled';
 
 const Header = () => {
   return (
-    <AppBar
-      position="static"
-      sx={{
-        bgcolor: 'rgba(0,0,0,0.2)',
-        backdropFilter: 'blur(3px)',
-        padding: '10px',
-        mb: '150px',
-      }}
-    >
+    <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Link style={{ color: 'white' }} to="/">
