@@ -70,7 +70,7 @@ const ContactForm = () => {
         />
         {formik.errors.phone ? <p>{formik.errors.phone}</p> : null}
       </Label>
-      <Button type="submit" disabled={!formik.isValid}>
+      <Button type="submit" disabled={!(formik.isValid && formik.dirty)}>
         Add contact
       </Button>
     </Form>
