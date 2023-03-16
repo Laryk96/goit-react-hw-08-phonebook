@@ -35,7 +35,7 @@ const ContactListItem = ({ id, name, phone, favorite }) => {
               toggleFavorite({ id, name, phone, favorite: !favorite })
             }
           >
-            <StarIcon favorite={favorite} />
+            <StarIcon favorite={favorite ? 'true' : 'false'} />
           </IconButton>
         }
         <Wrapper>

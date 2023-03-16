@@ -1,5 +1,5 @@
 import { Button, Toolbar, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import StarIcon from '@mui/icons-material/Star';
 
 import { Header as AppBar } from './Header.styled';
@@ -7,14 +7,14 @@ import { Header as AppBar } from './Header.styled';
 const Header = () => {
   return (
     <AppBar position="static">
-      <Toolbar>
+      <Toolbar sx={{ gap: '10px' }}>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Link style={{ color: 'white' }} to="/">
             HOME
           </Link>
         </Typography>
         <Button
-          component={Link}
+          component={NavLink}
           to="/favorites"
           color="inherit"
           sx={{
@@ -29,7 +29,7 @@ const Header = () => {
           <StarIcon />
         </Button>
         <Button
-          component={Link}
+          component={NavLink}
           to="/contacts"
           color="inherit"
           sx={{
@@ -44,7 +44,7 @@ const Header = () => {
           Contacts
         </Button>
         <Button
-          component={Link}
+          component={NavLink}
           to="/login"
           color="inherit"
           sx={{
@@ -59,7 +59,7 @@ const Header = () => {
           Login
         </Button>
         <Button
-          component={Link}
+          component={NavLink}
           to="/registration"
           color="inherit"
           sx={{

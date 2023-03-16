@@ -10,7 +10,9 @@ import { useSelector } from 'react-redux';
 const ContactList = () => {
   const filter = useSelector(selectFilter);
   const { data, isLoading } = useGetContactsQuery();
-  const contacts = contactsFiltration(data, filter);
+  const contacts = contactsFiltration(data, filter).sort(
+    (a, b) => Number(a.favorite) - Number(b.favorite)
+  );
 
   if (isLoading) {
     return <h2 style={{ textAlign: 'center' }}>loading...</h2>;

@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { Stack } from '@mui/system';
 import { CircularProgress } from '@mui/material';
+import StarPurple500Icon from '@mui/icons-material/StarPurple500';
 
 import { useGetContactsQuery } from 'redux/contactsSlice';
 import { SubTitle } from 'components/App/App.styled';
@@ -12,6 +13,7 @@ import { Form as Container } from 'components/SignUp/SignUp.styled';
 
 const Contacts = () => {
   const { data = [], isFetching } = useGetContactsQuery();
+  const favoritesCounter = data.filter(contact => contact.favorite).length;
 
   if (data.length <= 0) {
     return (
@@ -32,6 +34,13 @@ const Contacts = () => {
           sx={{ position: 'absolute', top: 10, right: 0 }}
         >
           <ContactsIcon color="#fff" />
+        </Badge>
+        <Badge
+          badgeContent={favoritesCounter}
+          color="secondary"
+          sx={{ position: 'absolute', top: 10, right: '60px' }}
+        >
+          <StarPurple500Icon />
         </Badge>
         {isFetching && (
           <Stack
