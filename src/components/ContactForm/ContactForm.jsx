@@ -1,6 +1,6 @@
-import { Formik, ErrorMessage } from 'formik';
-import * as yup from 'yup';
-
+import { useFormik } from 'formik';
+import * as yap from 'yup';
+import React from 'react';
 import { Label, Input, Button, Form } from './ContactForm.styled';
 import isNewName from 'services/checkContactName';
 import {
@@ -12,64 +12,68 @@ import { SubTitle } from 'components/App/App.styled';
 const ContactForm = () => {
   const { data } = useGetContactsQuery();
   const [addContact] = useAddContactMutation();
-  const onSubmitForm = (values, { resetForm }) => {
-    if (isNewName(data, values.name)) {
-      addContact(values);
-      resetForm();
-    }
-  };
-
-  const initialValues = {
-    name: '',
-    phone: '',
-  };
 
   const pattern = {
     str: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
     phone: '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
   };
 
-  const schema = yup.object().shape({
-    name: yup
-      .string()
-      .matches(pattern.str, 'Name must be a string')
-      .min(3, 'to short, min: 3')
-      .max(15, 'to long, max: 15')
-      .required(),
-    phone: yup.number().typeError().moreThan(12, 'fnnf').required(),
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      phone: '',
+    },
+    onSubmit: (values, { resetForm }) => {
+      if (isNewName(data, values.name)) {
+        console.log('+++');
+        addContact(values);
+        resetForm();
+      }
+      console.log(values);
+    },
+    validationSchema: yap.object().shape({
+      name: yap
+        .string()
+        .matches(pattern.str, 'Name must be a string')
+        .min(3, 'to short, min: 3')
+        .max(15, 'to long, max: 15')
+        .required(),
+      phone: yap.number().typeError().moreThan(12, 'fnnf').required(),
+    }),
   });
-
+  console.log('name');
+  console.log('phone', formik.errors.phone);
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={onSubmitForm}
-    >
-      <Form>
-        <SubTitle>Create New contact</SubTitle>
-        <Label>
-          <Input
-            placeholder="Name"
-            type="text"
-            name="name"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-          <ErrorMessage name="name" component="span" />
-        </Label>
-        <Label>
-          <Input
-            placeholder="Phone"
-            type="tel"
-            name="phone"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          />
-          <ErrorMessage name="phone" component="span" />
-        </Label>
-        <Button type="submit"> Add contact</Button>
-      </Form>
-    </Formik>
+    <Form onSubmit={formik.handleSubmit}>
+      <SubTitle>Create New contact</SubTitle>
+      <Label>
+        <Input
+          autoComplete="off"
+          placeholder="Name"
+          type="text"
+          name="name"
+          onChange={formik.handleChange}
+          value={formik.values.name}
+          required
+        />
+        {formik.errors.name ? <p>{formik.errors.name}</p> : null}
+      </Label>
+      <Label>
+        <Input
+          autoComplete="off"
+          placeholder="Phone"
+          type="tel"
+          name="phone"
+          onChange={formik.handleChange}
+          value={formik.values.phone}
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        />
+        {formik.errors.phone ? <p>{formik.errors.phone}</p> : null}
+      </Label>
+      <Button type="submit" disabled={!formik.isValid}>
+        Add contact
+      </Button>
+    </Form>
   );
 };
 

@@ -1,4 +1,3 @@
-import { Form as Forma, Field } from 'formik';
 import styled from '@emotion/styled';
 
 const Label = styled.label`
@@ -11,7 +10,7 @@ const Label = styled.label`
   width: 100%;
 `;
 
-const Form = styled(Forma)`
+const Form = styled.form`
   position: sticky;
   display: flex;
   align-items: center;
@@ -33,7 +32,7 @@ const Form = styled(Forma)`
   color: #fff;
 `;
 
-const Input = styled(Field)`
+const Input = styled.input`
   width: 100%;
   height: 35px;
   padding-left: 10px;
@@ -82,6 +81,13 @@ const Button = styled.button`
     background-position: right center; /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
+  }
+
+  &:disabled {
+    background-color: gray;
+    background-image: none;
+    box-shadow: none;
+    border: none;
   }
 `;
 export { Label, Form, Input, Button };
