@@ -1,5 +1,6 @@
 import MainLayout from 'MainLayout/MainLayout';
 import ContactsPage from 'pages/ContactsPage';
+import FavoritePage from 'pages/FavoritesPage';
 import HomePage from 'pages/HomePage';
 import LoginPage from 'pages/LoginPage';
 import RegistrationPage from 'pages/RegistrationPage';
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/registration" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
+        <Route path="/favorites" element={<FavoritePage />} />
       </Route>
     </Routes>
   );

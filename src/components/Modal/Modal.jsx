@@ -22,7 +22,7 @@ import {
 } from './Modal.styled';
 import { useEditContactMutation } from 'redux/contactsSlice';
 
-const Modal = ({ id, name, phone, onClose }) => {
+const Modal = ({ id, name, phone, onClose, favorite }) => {
   const [editContact, { isSuccess, isLoading, isUninitialized, isError }] =
     useEditContactMutation();
 
@@ -31,7 +31,15 @@ const Modal = ({ id, name, phone, onClose }) => {
   const handleSubmit = e => {
     e.preventDefault();
     const input = e.currentTarget.elements;
-    editContact({ id, name: input.name.value, phone: input.phone.value });
+    const editedName = input.name.value.trim();
+    const editedPhone = input.phone.value.trim();
+
+    editContact({
+      id,
+      favorite,
+      name: editedName ? editedName : name,
+      phone: editedPhone ? editedPhone : phone,
+    });
     e.currentTarget.reset();
   };
 

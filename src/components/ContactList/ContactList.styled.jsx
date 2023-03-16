@@ -10,9 +10,11 @@ const ContactsList = styled.ul`
 
 const Label = styled.div`
   display: flex;
-  width: 100%;
-  justify-content: space-around;
-  margin-left: -70px;
+
+  width: 60%;
+  justify-content: space-between;
+  margin: 0 auto;
+
   & span {
     font-size: 20px;
     font-weight: 500;

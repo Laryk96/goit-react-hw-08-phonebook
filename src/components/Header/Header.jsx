@@ -1,5 +1,6 @@
 import { Button, Toolbar, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import StarIcon from '@mui/icons-material/Star';
 
 import { Header as AppBar } from './Header.styled';
 
@@ -12,13 +13,64 @@ const Header = () => {
             HOME
           </Link>
         </Typography>
-        <Button component={Link} to="/contacts" color="inherit">
+        <Button
+          component={Link}
+          to="/favorites"
+          color="inherit"
+          sx={{
+            '&:hover': {
+              color: 'green',
+            },
+            '&:focus': {
+              color: 'green',
+            },
+          }}
+        >
+          <StarIcon />
+        </Button>
+        <Button
+          component={Link}
+          to="/contacts"
+          color="inherit"
+          sx={{
+            '&:hover': {
+              backgroundColor: '#590081',
+            },
+            '&:focus': {
+              backgroundColor: '#590081',
+            },
+          }}
+        >
           Contacts
         </Button>
-        <Button component={Link} to="/login" color="inherit">
+        <Button
+          component={Link}
+          to="/login"
+          color="inherit"
+          sx={{
+            '&:hover': {
+              backgroundColor: '#590081',
+            },
+            '&:focus': {
+              backgroundColor: '#590081',
+            },
+          }}
+        >
           Login
         </Button>
-        <Button component={Link} to="/registration" color="inherit">
+        <Button
+          component={Link}
+          to="/registration"
+          color="inherit"
+          sx={{
+            '&:hover': {
+              backgroundColor: '#590081',
+            },
+            '&:focus': {
+              backgroundColor: '#590081',
+            },
+          }}
+        >
           Sign Up
         </Button>
       </Toolbar>

@@ -13,14 +13,14 @@ const Label = styled.label`
 
 const Form = styled(Forma)`
   position: sticky;
-  top: 100px;
-  width: 400px;
-  min-height: 250px;
-  max-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  top: 100px;
+  width: 400px;
+  min-height: 250px;
+  max-height: 400px;
   gap: 30px;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.3);

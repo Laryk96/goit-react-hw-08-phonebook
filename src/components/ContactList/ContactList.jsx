@@ -29,12 +29,18 @@ const ContactList = () => {
           <i>
             <BsPhoneFill />
           </i>
-          <span>Tell:</span>
+          <span>Phone:</span>
         </Wrapper>
       </Label>
       <ContactsList>
-        {contacts.map(({ id, name, phone }) => (
-          <ContactListItem key={id} id={id} name={name} phone={phone} />
+        {contacts.map(({ id, name, phone, favorite }) => (
+          <ContactListItem
+            key={id}
+            id={id}
+            name={name}
+            phone={phone}
+            favorite={favorite}
+          />
         ))}
       </ContactsList>
     </>

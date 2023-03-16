@@ -38,9 +38,8 @@ const Contacts = () => {
             sx={{
               color: 'grey.500',
               position: 'absolute',
-
               right: '50%',
-              transform: 'translate(50%,0)',
+              transform: 'translate(50%,30%)',
             }}
             spacing={2}
             direction="row"

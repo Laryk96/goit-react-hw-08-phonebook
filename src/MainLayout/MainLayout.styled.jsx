@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-// import bgd from 'images/background.jpg';
 
 const Container = styled.main`
   flex: 1;

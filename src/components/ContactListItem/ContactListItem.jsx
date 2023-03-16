@@ -1,26 +1,43 @@
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
+import { IconButton } from '@mui/material';
 import Modal from 'components/Modal/Modal';
 import { useState } from 'react';
 
-import { useDeleteContactMutation } from 'redux/contactsSlice';
+import {
+  useDeleteContactMutation,
+  useEditContactMutation,
+} from 'redux/contactsSlice';
+
 import {
   Button,
   ContactItem,
   ContactName,
   Icons,
+  StarIcon,
   Wrapper,
   WrapperIcon,
 } from './ContactListItem.styled';
 
-const ContactListItem = ({ id, name, phone }) => {
+const ContactListItem = ({ id, name, phone, favorite }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
+  const [toggleFavorite] = useEditContactMutation();
 
   return (
     <>
       <ContactItem>
+        {
+          <IconButton
+            disabled={isLoading}
+            onClick={() =>
+              toggleFavorite({ id, name, phone, favorite: !favorite })
+            }
+          >
+            <StarIcon favorite={favorite} />
+          </IconButton>
+        }
         <Wrapper>
           <Icons>
             <img
@@ -31,7 +48,7 @@ const ContactListItem = ({ id, name, phone }) => {
           </Icons>
           <ContactName>{name}</ContactName>
         </Wrapper>
-        <span>{phone}</span>
+        <p>{phone}</p>
         <WrapperIcon>
           <Button hover="yellow" onClick={() => setOpenModal(true)}>
             <BorderColorIcon />
@@ -47,7 +64,13 @@ const ContactListItem = ({ id, name, phone }) => {
         </WrapperIcon>
       </ContactItem>
       {openModal && (
-        <Modal id={id} name={name} phone={phone} onClose={setOpenModal} />
+        <Modal
+          id={id}
+          name={name}
+          phone={phone}
+          onClose={setOpenModal}
+          favorite={favorite}
+        />
       )}
     </>
   );

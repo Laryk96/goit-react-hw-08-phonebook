@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
 import { IconButton } from '@mui/material';
 import { styled as muiStyled } from '@mui/material/styles';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 const ContactItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  padding: 12px;
+  padding: 12px 8px 12px 0;
+  gap: 10px;
 
   color: #ffff;
   border-radius: 15px;
@@ -39,12 +41,12 @@ const Icons = styled.div`
 `;
 
 const Wrapper = styled.div`
-  padding-left: 12px;
   display: flex;
   height: 100%;
   width: 58%;
   gap: 10px;
   align-items: center;
+  margin-left: -8px;
 `;
 
 const WrapperIcon = styled.div`
@@ -66,11 +68,22 @@ const Button = muiStyled(IconButton)`
   display: block;
 
   &:hover {
-
-
     background-position: right center;
     color: ${props => props.hover};
     text-decoration: none
 `;
 
-export { ContactItem, ContactName, Button, Icons, Wrapper, WrapperIcon };
+const StarIcon = styled(StarBorderIcon)`
+  font-size: 26px;
+  color: ${({ favorite }) => (favorite ? '#ff8f00' : '#907171')};
+`;
+
+export {
+  ContactItem,
+  ContactName,
+  Button,
+  Icons,
+  Wrapper,
+  WrapperIcon,
+  StarIcon,
+};

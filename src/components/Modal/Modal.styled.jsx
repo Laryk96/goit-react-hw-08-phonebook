@@ -60,8 +60,8 @@ const StyledButton = styled(IconButton)`
 
 const CloseBtn = styled(IconButton)`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
 `;
 
 const Icon = styled(CloseIcon)`
