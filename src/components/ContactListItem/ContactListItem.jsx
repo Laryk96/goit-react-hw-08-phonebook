@@ -1,29 +1,22 @@
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
-import { IconButton } from '@mui/material';
-import Modal from 'components/Modal/Modal';
+import { CircularProgress, IconButton, Stack } from '@mui/material';
 import { useState } from 'react';
 
-import {
-  useDeleteContactMutation,
-  useEditContactMutation,
-} from 'redux/contactsSlice';
+import ItemBar from 'components/ItemBar/ItemBar';
+import Modal from 'components/Modal/Modal';
+
+import { useEditContactMutation } from 'redux/contactsSlice';
 
 import {
-  Button,
   ContactItem,
   ContactName,
   Icons,
   StarIcon,
   Wrapper,
-  WrapperIcon,
 } from './ContactListItem.styled';
 
 const ContactListItem = ({ id, name, phone, favorite }) => {
   const [openModal, setOpenModal] = useState(false);
-
-  const [deleteContact, { isLoading }] = useDeleteContactMutation();
-  const [toggleFavorite] = useEditContactMutation();
+  const [toggleFavorite, { isLoading }] = useEditContactMutation();
 
   return (
     <>
@@ -35,7 +28,13 @@ const ContactListItem = ({ id, name, phone, favorite }) => {
               toggleFavorite({ id, name, phone, favorite: !favorite })
             }
           >
-            <StarIcon favorite={favorite ? 'true' : 'false'} />
+            {isLoading ? (
+              <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
+                <CircularProgress color="secondary" size={26} />
+              </Stack>
+            ) : (
+              <StarIcon favorite={favorite ? 'true' : 'false'} />
+            )}
           </IconButton>
         }
         <Wrapper>
@@ -43,25 +42,13 @@ const ContactListItem = ({ id, name, phone, favorite }) => {
             <img
               src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
               alt="avatar"
-              width={35}
+              width={37}
             />
           </Icons>
           <ContactName>{name}</ContactName>
         </Wrapper>
         <p>{phone}</p>
-        <WrapperIcon>
-          <Button hover="yellow" onClick={() => setOpenModal(true)}>
-            <BorderColorIcon />
-          </Button>
-          <Button
-            hover="red"
-            aria-label="Delete"
-            disabled={isLoading}
-            onClick={() => deleteContact(id)}
-          >
-            <PersonRemoveIcon />
-          </Button>
-        </WrapperIcon>
+        <ItemBar id={id} isOpenModal={setOpenModal} />
       </ContactItem>
       {openModal && (
         <Modal
