@@ -19,7 +19,7 @@ const ContactForm = () => {
     initialValues,
     onSubmit: (values, { resetForm }) => {
       if (isNewName(data, values.name)) {
-        addContact(values);
+        addContact({ name: values.name.trim(), phone: values.phone.trim() });
         resetForm();
       }
     },
@@ -36,7 +36,7 @@ const ContactForm = () => {
           type="text"
           name="name"
           onChange={formik.handleChange}
-          value={formik.values.name.trim()}
+          value={formik.values.name}
           required
         />
         {formik.errors.name ? <p>{formik.errors.name}</p> : null}
@@ -48,7 +48,7 @@ const ContactForm = () => {
           type="tel"
           name="phone"
           onChange={formik.handleChange}
-          value={formik.values.phone.trim()}
+          value={formik.values.phone}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         />
         {formik.errors.phone ? <p>{formik.errors.phone}</p> : null}

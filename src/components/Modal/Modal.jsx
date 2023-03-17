@@ -8,10 +8,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 import { StyledInput } from 'components/SignUp/SignUp.styled';
-import {
-  ContactName,
-  Icons,
-} from 'components/ContactListItem/ContactListItem.styled';
+import { AvatarWrapper } from 'components/ContactListItem/ContactListItem.styled';
 import {
   Backdrop,
   CloseBtn,
@@ -70,16 +67,16 @@ const Modal = ({ id, name, phone, onClose, favorite }) => {
         <CloseBtn onClick={() => onClose(false)}>
           <Icon />
         </CloseBtn>
-        <Icons>
+        <AvatarWrapper>
           <img
             src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
             alt="avatar"
             width={70}
             style={{ borderRadius: '50%' }}
           />
-        </Icons>
+        </AvatarWrapper>
         <ContactItem>
-          <ContactName>{name}</ContactName>
+          <p>{name}</p>
 
           <span>{phone}</span>
         </ContactItem>

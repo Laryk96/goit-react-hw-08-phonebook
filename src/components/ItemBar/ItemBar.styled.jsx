@@ -3,7 +3,6 @@ import { IconButton } from '@mui/material';
 import { styled as muiStyled } from '@mui/material/styles';
 
 const WrapperIcon = styled.div`
-  width: 15%;
   height: 100%;
   display: flex;
   background-color: #483343;

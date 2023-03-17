@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 const ContactItem = styled.li`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -15,24 +16,30 @@ const ContactItem = styled.li`
   border: 1px solid #212121;
   font-size: 18px;
 
-  & span {
-    width: 27%;
-    text-align: center;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 250px;
+    height: 100%;
+    width: 2px;
+    background-color: #9c1d6a12;
+    border-radius: 5px;
   }
-
   &:hover {
     background-color: #212121c4;
   }
 `;
-const ContactName = styled.p`
-  display: flex;
+const WrapperPhoneNumber = styled.div`
+  width: 33%;
+  text-align: center;
 `;
 
-const Icons = styled.div`
+const AvatarWrapper = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
+  justify-self: flex-start;
   height: 40px;
   border-radius: 50%;
   background-color: grey;
@@ -40,11 +47,14 @@ const Icons = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  height: 100%;
-  width: 58%;
-  gap: 10px;
   align-items: center;
+  justify-content: flex-start;
+  width: 55%;
+  gap: 10px;
   margin-left: -8px;
+
+  font-size: 16px;
+  line-height: 1.7;
 `;
 
 const StarIcon = styled(StarBorderIcon)`
@@ -56,4 +66,4 @@ const StarIcon = styled(StarBorderIcon)`
   }};
 `;
 
-export { ContactItem, ContactName, Icons, Wrapper, StarIcon };
+export { ContactItem, WrapperPhoneNumber, AvatarWrapper, Wrapper, StarIcon };

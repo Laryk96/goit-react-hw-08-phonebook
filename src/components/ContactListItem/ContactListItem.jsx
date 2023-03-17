@@ -8,8 +8,8 @@ import { useEditContactMutation } from 'redux/contactsSlice';
 
 import {
   ContactItem,
-  ContactName,
-  Icons,
+  WrapperPhoneNumber,
+  AvatarWrapper,
   StarIcon,
   Wrapper,
 } from './ContactListItem.styled';
@@ -38,16 +38,18 @@ const ContactListItem = ({ id, name, phone, favorite }) => {
           </IconButton>
         }
         <Wrapper>
-          <Icons>
+          <AvatarWrapper>
             <img
               src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
               alt="avatar"
               width={37}
             />
-          </Icons>
-          <ContactName>{name}</ContactName>
+          </AvatarWrapper>
+          <p>{name}</p>
         </Wrapper>
-        <p>{phone}</p>
+        <WrapperPhoneNumber>
+          <p>{phone}</p>
+        </WrapperPhoneNumber>
         <ItemBar id={id} isOpenModal={setOpenModal} />
       </ContactItem>
       {openModal && (

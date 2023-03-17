@@ -11,7 +11,7 @@ const ContactsList = styled.ul`
 const Label = styled.div`
   display: flex;
 
-  width: 60%;
+  width: 55%;
   justify-content: space-between;
   margin: 0 auto;
 

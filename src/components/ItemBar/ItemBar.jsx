@@ -9,7 +9,7 @@ const ItemBar = ({ id, isOpenModal }) => {
   return (
     <WrapperIcon>
       <Button hover="yellow" onClick={() => isOpenModal(true)}>
-        <BorderColorIcon />
+        <BorderColorIcon sx={{ fontSize: 20 }} />
       </Button>
       <Button
         hover="red"
@@ -17,7 +17,7 @@ const ItemBar = ({ id, isOpenModal }) => {
         disabled={isLoading}
         onClick={() => deleteContact(id)}
       >
-        <PersonRemoveIcon />
+        <PersonRemoveIcon sx={{ fontSize: 20 }} />
       </Button>
     </WrapperIcon>
   );
