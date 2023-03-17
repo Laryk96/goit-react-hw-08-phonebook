@@ -60,7 +60,6 @@ const Button = styled.button`
   margin-top: 10px;
   width: 100%;
   padding: 8px 30px;
-
   background-image: linear-gradient(
     to right,
     #fdfc47 0%,
@@ -76,7 +75,8 @@ const Button = styled.button`
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   border-radius: 10px;
 
-  font-size: 16px;
+  font-size: 18px;
+
   &:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
@@ -84,7 +84,7 @@ const Button = styled.button`
   }
 
   &:disabled {
-    background-color: gray;
+    background-color: rgba(255, 255, 255, 0.4);
     background-image: none;
     box-shadow: none;
     border: none;

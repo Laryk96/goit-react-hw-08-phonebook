@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import * as yap from 'yup';
+import * as yup from 'yup';
 import React from 'react';
 import { Label, Input, Button, Form } from './ContactForm.styled';
 import isNewName from 'services/checkContactName';
@@ -8,41 +8,24 @@ import {
   useGetContactsQuery,
 } from 'redux/contactsSlice';
 import { SubTitle } from 'components/App/App.styled';
+import { Stack } from '@mui/system';
+import { CircularProgress } from '@mui/material';
 
 const ContactForm = () => {
   const { data } = useGetContactsQuery();
-  const [addContact] = useAddContactMutation();
-
-  const pattern = {
-    str: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
-    phone: '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
-  };
+  const [addContact, { isSuccess, isLoading }] = useAddContactMutation();
 
   const formik = useFormik({
-    initialValues: {
-      name: '',
-      phone: '',
-    },
+    initialValues,
     onSubmit: (values, { resetForm }) => {
       if (isNewName(data, values.name)) {
-        console.log('+++');
         addContact(values);
         resetForm();
       }
-      console.log(values);
     },
-    validationSchema: yap.object().shape({
-      name: yap
-        .string()
-        .matches(pattern.str, 'Name must be a string')
-        .min(3, 'to short, min: 3')
-        .max(15, 'to long, max: 15')
-        .required(),
-      phone: yap.number().typeError().moreThan(12, 'fnnf').required(),
-    }),
+    validationSchema: schema,
   });
-  console.log('name');
-  console.log('phone', formik.errors.phone);
+  console.log(isSuccess);
   return (
     <Form onSubmit={formik.handleSubmit}>
       <SubTitle>Create New contact</SubTitle>
@@ -53,7 +36,7 @@ const ContactForm = () => {
           type="text"
           name="name"
           onChange={formik.handleChange}
-          value={formik.values.name}
+          value={formik.values.name.trim()}
           required
         />
         {formik.errors.name ? <p>{formik.errors.name}</p> : null}
@@ -65,16 +48,46 @@ const ContactForm = () => {
           type="tel"
           name="phone"
           onChange={formik.handleChange}
-          value={formik.values.phone}
+          value={formik.values.phone.trim()}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         />
         {formik.errors.phone ? <p>{formik.errors.phone}</p> : null}
       </Label>
       <Button type="submit" disabled={!(formik.isValid && formik.dirty)}>
-        Add contact
+        {isLoading ? (
+          <Stack
+            sx={{ color: 'grey.500', margin: '0 auto', display: 'block' }}
+            spacing={2}
+            direction="row"
+          >
+            <CircularProgress color="secondary" size={26} />
+          </Stack>
+        ) : (
+          'Add contact'
+        )}
       </Button>
     </Form>
   );
 };
+
+const pattern = {
+  str: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+  phone: '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
+};
+
+const initialValues = {
+  name: '',
+  phone: '',
+};
+
+const schema = yup.object().shape({
+  name: yup
+    .string()
+    .matches(pattern.str, 'Name must be a string')
+    .min(3, 'to short, min: 3')
+    .max(20, 'to long, max: 20')
+    .required(),
+  phone: yup.number().typeError().moreThan(12).required(),
+});
 
 export default ContactForm;
