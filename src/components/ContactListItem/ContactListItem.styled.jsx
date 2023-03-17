@@ -76,7 +76,7 @@ const Button = muiStyled(IconButton)`
 const StarIcon = styled(StarBorderIcon)`
   font-size: 26px;
   color: ${({ favorite }) => {
-    if (favorite === 'true') return '#ff8f00';
+    if (favorite === 'true') return '#d300ff';
 
     return '#907171';
   }};
