@@ -13,7 +13,7 @@ import { CircularProgress } from '@mui/material';
 
 const ContactForm = () => {
   const { data } = useGetContactsQuery();
-  const [addContact, { isSuccess, isLoading }] = useAddContactMutation();
+  const [addContact, { isLoading }] = useAddContactMutation();
 
   const formik = useFormik({
     initialValues,
@@ -25,7 +25,7 @@ const ContactForm = () => {
     },
     validationSchema: schema,
   });
-  console.log(isSuccess);
+
   return (
     <Form onSubmit={formik.handleSubmit}>
       <SubTitle>Create New contact</SubTitle>
