@@ -1,4 +1,4 @@
-import BorderColorIcon from '@mui/icons-material/BorderColor';
+import EditIcon from '@mui/icons-material/Edit';
 import Modal from 'components/Modal/Modal';
 import { CloseBtn, Icon } from 'components/Modal/Modal.styled';
 import { useState } from 'react';
@@ -41,7 +41,7 @@ const FavoritesList = () => {
               hover="yellow"
               onClick={() => setOpenModal(true)}
             >
-              <BorderColorIcon sx={{ fontSize: 18 }} />
+              <EditIcon sx={{ fontSize: 20 }} />
             </Button>
             <IconWrapper>
               <img
