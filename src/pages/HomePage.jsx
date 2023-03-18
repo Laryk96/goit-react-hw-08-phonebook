@@ -51,7 +51,7 @@ const HomePage = () => {
           variant="span"
           sx={{
             display: 'inline',
-            fontSize: '60px',
+            fontSize: '46px',
             fontWeight: '500',
           }}
           ref={el}
