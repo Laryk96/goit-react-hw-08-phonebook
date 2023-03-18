@@ -3,8 +3,8 @@ import { BsPersonSquare, BsPhoneFill } from 'react-icons/bs';
 import contactsFiltration from 'services/contactsFiltration';
 import ContactListItem from 'components/ContactListItem/ContactListItem';
 import { ContactsList, Label, Wrapper } from './ContactList.styled';
-import { selectFilter } from 'redux/selectors';
-import { useGetContactsQuery } from 'redux/contactsSlice';
+import { selectFilter } from 'redux/phonebook/selectors';
+import { useGetContactsQuery } from 'redux/phonebook/contactsSlice';
 import { useSelector } from 'react-redux';
 
 const ContactList = () => {

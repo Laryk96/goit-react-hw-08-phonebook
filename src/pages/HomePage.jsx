@@ -1,10 +1,26 @@
 import { Box, Typography } from '@mui/material';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import Typed from 'typed.js';
 
 const HomePage = () => {
+  const el = useRef(null);
+
+  useEffect(() => {
+    new Typed(el.current, {
+      strings: ['Contacts manager', 'Best phonebook'],
+      typeSpeed: 40,
+      backSpeed: 15,
+      backDelay: 3200,
+      loop: true,
+      showCursor: false,
+    });
+  });
+
   return (
     <Box
       component="div"
+      className="wrapper books"
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -23,16 +39,27 @@ const HomePage = () => {
           fontSize: '50px',
           textAlign: 'center',
           fontWeight: '700',
-          width: '630px',
-          mb: '50px',
+          width: '650px',
+          mb: '10px',
         }}
       >
-        Welcome to the Phonebook - Contacts manager
+        Welcome to the Phonebook
       </Typography>
+
+      <Box component="div" sx={{ mb: '40px', height: '60px' }}>
+        <Typography
+          variant="span"
+          sx={{
+            display: 'inline',
+            fontSize: '60px',
+            fontWeight: '500',
+          }}
+          ref={el}
+        ></Typography>
+      </Box>
       <Box
         component="div"
         sx={{
-          display: 'flex',
           flexDirection: 'column',
         }}
       >

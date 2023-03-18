@@ -59,8 +59,8 @@ const Wrapper = styled.div`
 
 const StarIcon = styled(StarBorderIcon)`
   font-size: 26px;
-  color: ${({ favorite }) => {
-    if (favorite === 'true') return '#d300ff';
+  color: ${({ status }) => {
+    if (status === 'true') return '#d300ff';
 
     return '#907171';
   }};

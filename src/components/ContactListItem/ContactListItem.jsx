@@ -1,10 +1,9 @@
-import { CircularProgress, IconButton, Stack } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
 import ItemBar from 'components/ItemBar/ItemBar';
 import Modal from 'components/Modal/Modal';
-
-import { useEditContactMutation } from 'redux/contactsSlice';
+import useFavorites from 'redux/hooks/useFavorites';
 
 import {
   ContactItem,
@@ -14,28 +13,23 @@ import {
   Wrapper,
 } from './ContactListItem.styled';
 
-const ContactListItem = ({ id, name, phone, favorite }) => {
+const ContactListItem = ({ id, name, phone }) => {
+  const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
-  const [toggleFavorite, { isLoading }] = useEditContactMutation();
+  const { toggleAction, status } = useFavorites(id);
 
+  const handleAddFavorites = e => {
+    dispatch(toggleAction({ id, name, phone }));
+  };
   return (
     <>
       <ContactItem>
         {
-          <IconButton
-            disabled={isLoading}
-            onClick={() =>
-              toggleFavorite({ id, name, phone, favorite: !favorite })
-            }
-          >
-            {isLoading ? (
-              <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
-                <CircularProgress color="secondary" size={26} />
-              </Stack>
-            ) : (
-              <StarIcon favorite={favorite ? 'true' : 'false'} />
-            )}
-          </IconButton>
+          <Tooltip title="Add to favorites ">
+            <IconButton onClick={handleAddFavorites}>
+              <StarIcon status={status ? 'true' : 'false'} />
+            </IconButton>
+          </Tooltip>
         }
         <Wrapper>
           <AvatarWrapper>
@@ -53,13 +47,7 @@ const ContactListItem = ({ id, name, phone, favorite }) => {
         <ItemBar id={id} isOpenModal={setOpenModal} />
       </ContactItem>
       {openModal && (
-        <Modal
-          id={id}
-          name={name}
-          phone={phone}
-          onClose={setOpenModal}
-          favorite={favorite}
-        />
+        <Modal id={id} name={name} phone={phone} onClose={setOpenModal} />
       )}
     </>
   );

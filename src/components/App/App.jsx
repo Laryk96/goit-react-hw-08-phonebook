@@ -1,10 +1,13 @@
-import MainLayout from 'MainLayout/MainLayout';
-import ContactsPage from 'pages/ContactsPage';
-import FavoritePage from 'pages/FavoritesPage';
-import HomePage from 'pages/HomePage';
-import LoginPage from 'pages/LoginPage';
-import RegistrationPage from 'pages/RegistrationPage';
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
+import MainLayout from 'MainLayout/MainLayout';
+
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
+const HomePage = lazy(() => import('pages/HomePage'));
+const FavoritePage = lazy(() => import('pages/FavoritesPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 
 const App = () => {
   return (

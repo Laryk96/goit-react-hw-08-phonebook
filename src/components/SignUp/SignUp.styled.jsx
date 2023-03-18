@@ -76,7 +76,7 @@ const Form = styled(Box)`
   justify-content: center;
   flex-direction: column;
   gap: 30px;
-  padding: 60px 20px 40px 20px;
+  padding: 30px 20px;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;

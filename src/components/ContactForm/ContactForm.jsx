@@ -6,7 +6,7 @@ import isNewName from 'services/checkContactName';
 import {
   useAddContactMutation,
   useGetContactsQuery,
-} from 'redux/contactsSlice';
+} from 'redux/phonebook/contactsSlice.js';
 import { SubTitle } from 'components/App/App.styled';
 import { Stack } from '@mui/system';
 import { CircularProgress } from '@mui/material';

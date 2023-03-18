@@ -17,9 +17,9 @@ import {
   ModalBody,
   StyledButton,
 } from './Modal.styled';
-import { useEditContactMutation } from 'redux/contactsSlice';
+import { useEditContactMutation } from 'redux/phonebook/contactsSlice';
 
-const Modal = ({ id, name, phone, onClose, favorite }) => {
+const Modal = ({ id, name, phone, onClose }) => {
   const [editContact, { isSuccess, isLoading, isUninitialized, isError }] =
     useEditContactMutation();
 
@@ -33,7 +33,6 @@ const Modal = ({ id, name, phone, onClose, favorite }) => {
 
     editContact({
       id,
-      favorite,
       name: editedName ? editedName : name,
       phone: editedPhone ? editedPhone : phone,
     });

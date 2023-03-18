@@ -1,24 +1,18 @@
+import { useSelector } from 'react-redux';
 import FavoritesItem from 'components/FavoritesItem/FavoritesItem';
-import { useGetContactsQuery } from 'redux/contactsSlice';
 import { List, Wrapper } from './FavoritesList.styled';
+import {
+  selectFavorites,
+  selectorFavoritesContact,
+} from 'redux/phonebook/selectors';
 
 const FavoritesList = () => {
-  const { data = [], isLoading } = useGetContactsQuery();
-  const contacts = data.filter(contact => contact.favorite);
-
+  const favorites = useSelector(selectFavorites);
   return (
     <Wrapper component="div">
-      {isLoading && <h2>loading...</h2>}
-
       <List>
-        {contacts.map(({ name, phone, id, favorite }) => (
-          <FavoritesItem
-            key={id}
-            name={name}
-            phone={phone}
-            id={id}
-            favorite={favorite}
-          />
+        {favorites.map(({ name, phone, id }) => (
+          <FavoritesItem key={id} name={name} phone={phone} id={id} />
         ))}
       </List>
     </Wrapper>
@@ -26,3 +20,9 @@ const FavoritesList = () => {
 };
 
 export default FavoritesList;
+// const { data = [], isLoading } = useGetContactsQuery();
+// const favoritesId = useSelector(selectFavorites);
+// const contacts = data.reduce((acc, contact) => {
+//   favoritesId.includes(contact.id) && acc.push(contact);
+//   return acc;
+// }, []);

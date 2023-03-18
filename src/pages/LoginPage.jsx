@@ -12,9 +12,13 @@ const LoginPage = () => {
       <Form component="form" noValidate autoComplete="off">
         <Typography
           variant="h3"
-          sx={{ marginBottom: '30px', textAlign: 'center' }}
+          sx={{
+            marginBottom: '30px',
+            textAlign: 'center',
+            textTransform: 'uppercase',
+          }}
         >
-          Log in to your account
+          Log in
         </Typography>
 
         <StyledInput required label="Email" type="text" variant="standard" />
@@ -27,7 +31,7 @@ const LoginPage = () => {
           sx={{ mb: '10px' }}
         />
         <StyledButton type="submit" variant="contained">
-          log in
+          Login
         </StyledButton>
       </Form>
     </Container>

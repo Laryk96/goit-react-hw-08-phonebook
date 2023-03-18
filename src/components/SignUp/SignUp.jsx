@@ -6,7 +6,10 @@ const SignUp = () => {
   return (
     <Container component="div">
       <Form component="form" noValidate autoComplete="off">
-        <Typography variant="h3" sx={{ marginBottom: '30px' }}>
+        <Typography
+          variant="h3"
+          sx={{ marginBottom: '30px', textTransform: 'uppercase' }}
+        >
           Sign up
         </Typography>
 
@@ -21,7 +24,7 @@ const SignUp = () => {
           sx={{ mb: '10px' }}
         />
         <StyledButton type="submit" variant="contained">
-          Sign up
+          Create
         </StyledButton>
       </Form>
     </Container>

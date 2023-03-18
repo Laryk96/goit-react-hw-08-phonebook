@@ -4,16 +4,19 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import { Stack } from '@mui/system';
 import { CircularProgress } from '@mui/material';
 import StarPurple500Icon from '@mui/icons-material/StarPurple500';
+import { useSelector } from 'react-redux';
 
-import { useGetContactsQuery } from 'redux/contactsSlice';
+import { useGetContactsQuery } from 'redux/phonebook/contactsSlice';
 import { SubTitle } from 'components/App/App.styled';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
 import { Form as Container } from 'components/SignUp/SignUp.styled';
+import { selectFavorites } from 'redux/phonebook/selectors';
 
 const Contacts = () => {
   const { data = [], isFetching } = useGetContactsQuery();
-  const favoritesCounter = data.filter(contact => contact.favorite).length;
+  const favorite = useSelector(selectFavorites);
+  const favoritesCounter = favorite.length;
 
   if (data.length <= 0) {
     return (
