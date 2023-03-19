@@ -9,7 +9,7 @@ import {
 } from 'redux/phonebook/contactsSlice.js';
 import { SubTitle } from 'components/App/App.styled';
 import { Stack } from '@mui/system';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Tooltip } from '@mui/material';
 
 const ContactForm = () => {
   const { data } = useGetContactsQuery();
@@ -26,38 +26,44 @@ const ContactForm = () => {
     validationSchema: schema,
   });
 
+  const isDisabled = !(formik.isValid && formik.dirty);
+
   return (
     <Form onSubmit={formik.handleSubmit}>
       <SubTitle>Create New contact</SubTitle>
-      <Label>
-        <Input
-          autoComplete="off"
-          placeholder="Name"
-          type="text"
-          name="name"
-          onChange={formik.handleChange}
-          value={formik.values.name}
-          required
-        />
-        {formik.errors.name && formik.touched.name ? (
-          <span>{formik.errors.name}</span>
-        ) : null}
-      </Label>
-      <Label>
-        <Input
-          autoComplete="off"
-          placeholder="Phone"
-          type="tel"
-          name="number"
-          onChange={formik.handleChange}
-          value={formik.values.number}
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        />
-        {formik.errors.number && formik.touched.number ? (
-          <span>{formik.errors.number}</span>
-        ) : null}
-      </Label>
-      <Button type="submit" disabled={!(formik.isValid && formik.dirty)}>
+      <Tooltip title={formik.errors.name}>
+        <Label>
+          <Input
+            autoComplete="off"
+            placeholder="Name"
+            type="text"
+            name="name"
+            onChange={formik.handleChange}
+            value={formik.values.name}
+            required
+          />
+          {formik.errors.name && formik.touched.name ? (
+            <span>{formik.errors.name}</span>
+          ) : null}
+        </Label>
+      </Tooltip>
+      <Tooltip title={formik.errors.number}>
+        <Label>
+          <Input
+            autoComplete="off"
+            placeholder="Phone"
+            type="tel"
+            name="number"
+            onChange={formik.handleChange}
+            value={formik.values.number}
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          />
+          {formik.errors.number && formik.touched.number ? (
+            <span>{formik.errors.number}</span>
+          ) : null}
+        </Label>
+      </Tooltip>
+      <Button type="submit" disabled={isDisabled}>
         {isLoading ? (
           <Stack
             sx={{ color: 'grey.500', margin: '0 auto', display: 'block' }}

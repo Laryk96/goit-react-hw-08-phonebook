@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Tooltip, Typography } from '@mui/material';
 import {
   Form,
   StyledButton,
@@ -39,6 +39,8 @@ const LogIn = () => {
     },
     validationSchema: schema,
   });
+
+  const isDisabled = !(formik.isValid && formik.dirty);
   return (
     <Form
       component="form"
@@ -57,41 +59,43 @@ const LogIn = () => {
         Log in
       </Typography>
 
-      <Label>
-        <StyledInput
-          required
-          label="Email"
-          type="email"
-          variant="standard"
-          name="email"
-          onChange={formik.handleChange}
-          value={formik.values.email}
-        />
-        {formik.errors.email && formik.touched.email ? (
-          <>{formik.errors.email}</>
-        ) : null}
-      </Label>
-      <Label>
-        <StyledInput
-          required
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          variant="standard"
-          sx={{ mb: '10px' }}
-          name="password"
-          onChange={formik.handleChange}
-          value={formik.values.password}
-        />
-        {formik.errors.password && formik.touched.password ? (
-          <span>{formik.errors.password}</span>
-        ) : null}
-      </Label>
-      <StyledButton
-        type="submit"
-        variant="contained"
-        disabled={!(formik.isValid && formik.dirty)}
-      >
+      <Tooltip title={formik.errors.email}>
+        <Label>
+          <StyledInput
+            required
+            label="Email"
+            type="email"
+            variant="standard"
+            name="email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+          />
+          {formik.errors.email && formik.touched.email ? (
+            <>{formik.errors.email}</>
+          ) : null}
+        </Label>
+      </Tooltip>
+
+      <Tooltip title={formik.errors.password}>
+        <Label>
+          <StyledInput
+            required
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            variant="standard"
+            sx={{ mb: '10px' }}
+            name="password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+          />
+          {formik.errors.password && formik.touched.password ? (
+            <span>{formik.errors.password}</span>
+          ) : null}
+        </Label>
+      </Tooltip>
+
+      <StyledButton type="submit" variant="contained" disabled={isDisabled}>
         Login
       </StyledButton>
     </Form>
