@@ -2,8 +2,9 @@ import { Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import { memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from 'redux/auth/operation';
+import * as yup from 'yup';
 
+import { register } from 'redux/auth/operation';
 import { StyledButton, StyledInput, Form } from './SignUp.styled';
 
 const initialValues = {
@@ -11,6 +12,22 @@ const initialValues = {
   email: '',
   password: '',
 };
+const schema = yup.object().shape({
+  name: yup
+    .string()
+    .min(3, 'to short, min: 3')
+    .max(20, 'to long, max: 20')
+    .required(),
+  email: yup
+    .string()
+    .email('Email must be a valid email address')
+    .required('Email is required'),
+  password: yup
+    .string()
+    .required('No password provided.')
+    .min(7, 'Password is too short - should be 8 chars minimum.'),
+  // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+});
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -21,6 +38,7 @@ const SignUp = () => {
       dispatch(register(values));
       resetForm();
     },
+    validationSchema: schema,
   });
 
   return (

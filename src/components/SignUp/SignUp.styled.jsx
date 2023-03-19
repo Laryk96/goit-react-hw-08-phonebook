@@ -58,6 +58,7 @@ const StyledButton = styled(Button)({
     backgroundPosition: 'right center',
     color: '#fff',
     textDecoration: 'none',
+    backgroundColor: '',
   },
   '&:active': {
     boxShadow: 'none',
@@ -68,6 +69,7 @@ const StyledButton = styled(Button)({
     boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
   },
 });
+//
 
 const Form = styled(Box)`
   width: 400px;

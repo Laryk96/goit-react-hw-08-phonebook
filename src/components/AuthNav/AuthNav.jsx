@@ -9,7 +9,6 @@ const AuthNav = () => {
         component={NavLink}
         to="/login"
         color="inherit"
-        exact
         sx={{
           '&:hover': {
             backgroundColor: '#590081',
@@ -24,7 +23,6 @@ const AuthNav = () => {
       <Button
         component={NavLink}
         to="/registration"
-        exact
         color="inherit"
         sx={{
           '&:hover': {

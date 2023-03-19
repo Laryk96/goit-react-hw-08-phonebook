@@ -6,12 +6,26 @@ import {
 } from 'components/SignUp/SignUp.styled';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
+import * as yup from 'yup';
+
 import { login } from 'redux/auth/operation';
 
 const initialValues = {
   email: '',
   password: '',
 };
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email('Email must be a valid email address')
+    .required('Email is required'),
+  password: yup
+    .string()
+    .required('No password provided.')
+    .min(7, 'Password is too short - should be 8 chars minimum.'),
+  // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+});
 
 const LogIn = () => {
   const dispatch = useDispatch();
@@ -22,6 +36,7 @@ const LogIn = () => {
       dispatch(login(values));
       resetForm();
     },
+    validationSchema: schema,
   });
   return (
     <Form
@@ -61,7 +76,11 @@ const LogIn = () => {
         onChange={formik.handleChange}
         value={formik.values.password}
       />
-      <StyledButton type="submit" variant="contained">
+      <StyledButton
+        type="submit"
+        variant="contained"
+        disabled={!(formik.isValid && formik.dirty)}
+      >
         Login
       </StyledButton>
     </Form>
