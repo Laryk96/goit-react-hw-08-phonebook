@@ -3,9 +3,9 @@ const contactsFiltration = (contacts = [], filter = '') => {
 
   return contacts
     .filter(
-      ({ name, phone }) =>
+      ({ name, number }) =>
         name.toLowerCase().includes(normalizedFilter) ||
-        phone.includes(normalizedFilter)
+        number.includes(normalizedFilter)
     )
     .sort((a, b) => Number(a.favorite) - Number(b.favorite));
 };

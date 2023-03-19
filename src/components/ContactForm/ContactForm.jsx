@@ -19,7 +19,7 @@ const ContactForm = () => {
     initialValues,
     onSubmit: (values, { resetForm }) => {
       if (isNewName(data, values.name)) {
-        addContact({ name: values.name.trim(), phone: values.phone.trim() });
+        addContact({ name: values.name.trim(), number: values.number.trim() });
         resetForm();
       }
     },
@@ -46,12 +46,12 @@ const ContactForm = () => {
           autoComplete="off"
           placeholder="Phone"
           type="tel"
-          name="phone"
+          name="number"
           onChange={formik.handleChange}
-          value={formik.values.phone}
+          value={formik.values.number}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         />
-        {formik.errors.phone ? <p>{formik.errors.phone}</p> : null}
+        {formik.errors.number ? <p>{formik.errors.number}</p> : null}
       </Label>
       <Button type="submit" disabled={!(formik.isValid && formik.dirty)}>
         {isLoading ? (
@@ -72,12 +72,12 @@ const ContactForm = () => {
 
 const pattern = {
   str: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
-  phone: '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
+  number: '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
 };
 
 const initialValues = {
   name: '',
-  phone: '',
+  number: '',
 };
 
 const schema = yup.object().shape({
@@ -87,7 +87,7 @@ const schema = yup.object().shape({
     .min(3, 'to short, min: 3')
     .max(20, 'to long, max: 20')
     .required(),
-  phone: yup.number().typeError().moreThan(12).required(),
+  number: yup.number().typeError().moreThan(12).required(),
 });
 
 export default ContactForm;

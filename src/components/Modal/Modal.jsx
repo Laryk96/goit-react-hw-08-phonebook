@@ -19,7 +19,7 @@ import {
 } from './Modal.styled';
 import { useEditContactMutation } from 'redux/phonebook/contactsSlice';
 
-const Modal = ({ id, name, phone, onClose }) => {
+const Modal = ({ id, name, number, onClose }) => {
   const [editContact, { isSuccess, isLoading, isUninitialized, isError }] =
     useEditContactMutation();
 
@@ -29,12 +29,12 @@ const Modal = ({ id, name, phone, onClose }) => {
     e.preventDefault();
     const input = e.currentTarget.elements;
     const editedName = input.name.value.trim();
-    const editedPhone = input.phone.value.trim();
+    const editedPhone = input.number.value.trim();
 
     editContact({
       id,
       name: editedName ? editedName : name,
-      phone: editedPhone ? editedPhone : phone,
+      number: editedPhone ? editedPhone : number,
     });
     e.currentTarget.reset();
   };
@@ -77,7 +77,7 @@ const Modal = ({ id, name, phone, onClose }) => {
         <ContactItem>
           <p>{name}</p>
 
-          <span>{phone}</span>
+          <span>{number}</span>
         </ContactItem>
         {isUninitialized && (
           <ArrowDownwardIcon
@@ -114,7 +114,7 @@ const Modal = ({ id, name, phone, onClose }) => {
             />
 
             <StyledInput
-              name="phone"
+              name="number"
               label="Phone"
               type="text"
               variant="outlined"

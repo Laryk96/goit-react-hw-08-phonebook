@@ -32,12 +32,12 @@ const ContactList = () => {
         </Wrapper>
       </Label>
       <ContactsList>
-        {contacts.map(({ id, name, phone, favorite }) => (
+        {contacts.map(({ id, name, number, favorite }) => (
           <ContactListItem
             key={id}
             id={id}
             name={name}
-            phone={phone}
+            number={number}
             favorite={favorite}
           />
         ))}

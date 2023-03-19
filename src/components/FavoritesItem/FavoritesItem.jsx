@@ -8,7 +8,7 @@ import { CloseBtn, Icon } from 'components/Modal/Modal.styled';
 import { Button, IconWrapper, Item, Title } from './FavoritesItem.styled';
 import Modal from 'components/Modal/Modal';
 
-const FavoritesItem = ({ id, name, phone, favorite }) => {
+const FavoritesItem = ({ id, name, number, favorite }) => {
   const [openModal, setOpenModal] = useState(false);
   const dispatch = useDispatch();
 
@@ -36,12 +36,12 @@ const FavoritesItem = ({ id, name, phone, favorite }) => {
         />
       </IconWrapper>
       <Title>{name}</Title>
-      <p>{phone}</p>
+      <p>{number}</p>
       {openModal && (
         <Modal
           id={id}
           name={name}
-          phone={phone}
+          number={number}
           onClose={setOpenModal}
           favorite={favorite}
         />

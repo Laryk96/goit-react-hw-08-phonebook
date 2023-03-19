@@ -1,9 +1,6 @@
-const { useSelector } = require('react-redux');
-const {
-  deleteFavorite,
-  addFavorite,
-} = require('redux/phonebook/favoritesSlice');
-const { selectFavorites } = require('redux/phonebook/selectors');
+import { useSelector } from 'react-redux';
+import { addFavorite, deleteFavorite } from 'redux/phonebook/favoritesSlice';
+import { selectFavorites } from 'redux/phonebook/selectors';
 
 const useFavorites = id => {
   const favorites = useSelector(selectFavorites);

@@ -13,13 +13,13 @@ import {
   Wrapper,
 } from './ContactListItem.styled';
 
-const ContactListItem = ({ id, name, phone }) => {
+const ContactListItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const { toggleAction, status } = useFavorites(id);
 
   const handleAddFavorites = e => {
-    dispatch(toggleAction({ id, name, phone }));
+    dispatch(toggleAction({ id, name, number }));
   };
   return (
     <>
@@ -42,12 +42,12 @@ const ContactListItem = ({ id, name, phone }) => {
           <p>{name}</p>
         </Wrapper>
         <WrapperPhoneNumber>
-          <p>{phone}</p>
+          <p>{number}</p>
         </WrapperPhoneNumber>
         <ItemBar id={id} isOpenModal={setOpenModal} />
       </ContactItem>
       {openModal && (
-        <Modal id={id} name={name} phone={phone} onClose={setOpenModal} />
+        <Modal id={id} name={name} number={number} onClose={setOpenModal} />
       )}
     </>
   );

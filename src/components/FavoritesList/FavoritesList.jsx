@@ -8,8 +8,8 @@ const FavoritesList = () => {
   return (
     <Wrapper component="div">
       <List>
-        {favorites.map(({ name, phone, id }) => (
-          <FavoritesItem key={id} name={name} phone={phone} id={id} />
+        {favorites.map(({ name, number, id }) => (
+          <FavoritesItem key={id} name={name} number={number} id={id} />
         ))}
       </List>
     </Wrapper>
