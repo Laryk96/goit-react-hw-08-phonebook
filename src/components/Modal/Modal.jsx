@@ -157,7 +157,7 @@ const Modal = ({ id, name, number, onClose }) => {
                 <StyledInput
                   name="number"
                   label="Phone"
-                  type="text"
+                  type="tel"
                   variant="outlined"
                   // sx={{ width: '35%' }}
                   onChange={formik.handleChange}
