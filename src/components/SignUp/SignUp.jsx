@@ -66,7 +66,9 @@ const SignUp = () => {
           onChange={formik.handleChange}
           value={formik.values.name}
         />
-        {formik.errors.name ? <p>{formik.errors.name}</p> : null}
+        {formik.errors.name && formik.touched.name ? (
+          <span>{formik.errors.name}</span>
+        ) : null}
       </Label>
       <Label>
         <StyledInput
@@ -78,7 +80,9 @@ const SignUp = () => {
           onChange={formik.handleChange}
           value={formik.values.email}
         />
-        {formik.errors.email ? <p>{formik.errors.email}</p> : null}
+        {formik.errors.email && formik.touched.email ? (
+          <span>{formik.errors.email}</span>
+        ) : null}
       </Label>
       <Label>
         <StyledInput
@@ -92,7 +96,9 @@ const SignUp = () => {
           onChange={formik.handleChange}
           value={formik.values.password}
         />
-        {formik.errors.password ? <p>{formik.errors.password}</p> : null}
+        {formik.errors.password && formik.touched.password ? (
+          <span>{formik.errors.password}</span>
+        ) : null}
       </Label>
       <StyledButton
         type="submit"

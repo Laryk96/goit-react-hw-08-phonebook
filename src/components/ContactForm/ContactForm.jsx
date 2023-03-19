@@ -39,7 +39,9 @@ const ContactForm = () => {
           value={formik.values.name}
           required
         />
-        {formik.errors.name ? <p>{formik.errors.name}</p> : null}
+        {formik.errors.name && formik.touched.name ? (
+          <span>{formik.errors.name}</span>
+        ) : null}
       </Label>
       <Label>
         <Input
@@ -51,7 +53,9 @@ const ContactForm = () => {
           value={formik.values.number}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         />
-        {formik.errors.number ? <p>{formik.errors.number}</p> : null}
+        {formik.errors.number && formik.touched.number ? (
+          <span>{formik.errors.number}</span>
+        ) : null}
       </Label>
       <Button type="submit" disabled={!(formik.isValid && formik.dirty)}>
         {isLoading ? (
