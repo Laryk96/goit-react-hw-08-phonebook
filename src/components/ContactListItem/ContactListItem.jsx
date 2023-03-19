@@ -21,11 +21,12 @@ const ContactListItem = ({ id, name, number }) => {
   const handleAddFavorites = e => {
     dispatch(toggleAction({ id, name, number }));
   };
+  console.log(status);
   return (
     <>
       <ContactItem>
         {
-          <Tooltip title="Add to favorites ">
+          <Tooltip title={!status ? 'Add to favorites' : 'remove to favorites'}>
             <IconButton onClick={handleAddFavorites}>
               <StarIcon status={status ? 'true' : 'false'} />
             </IconButton>
