@@ -1,11 +1,12 @@
 import { Box, Typography } from '@mui/material';
+import { useAuth } from 'hooks/useAuth';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Typed from 'typed.js';
 
 const HomePage = () => {
   const el = useRef(null);
-
+  const { isLoggedIn } = useAuth();
   useEffect(() => {
     new Typed(el.current, {
       strings: ['Contacts manager', 'Best phonebook'],
@@ -45,7 +46,6 @@ const HomePage = () => {
       >
         Welcome to the Phonebook
       </Typography>
-
       <Box component="div" sx={{ mb: '40px', height: '60px' }}>
         <Typography
           variant="span"
@@ -57,52 +57,64 @@ const HomePage = () => {
           ref={el}
         ></Typography>
       </Box>
-      <Box
-        component="div"
-        sx={{
-          flexDirection: 'column',
-        }}
-      >
-        <Typography
-          variant="p"
-          sx={{
-            fontSize: '16px',
-            textAlign: 'center',
-          }}
-        >
-          Please
+      {isLoggedIn ? (
+        <Typography variant="body1">
+          You can view your{' '}
           <Link
-            style={{
-              color: '#fff',
-              textDecoration: 'underline',
-              padding: '5px',
-            }}
-            to="/login"
+            to="/contacts"
+            style={{ color: '#fff', textDecoration: 'underline' }}
           >
-            log in
-          </Link>
-          to your account to view your contacts.
-        </Typography>
-        <Typography
-          variant="p"
-          sx={{
-            fontSize: '16px',
-            textAlign: 'center',
-          }}
-        >
-          If you are not registered yet, please
-          <Link
-            style={{
-              color: '#fff',
-              textDecoration: 'underline',
-              padding: '5px',
-            }}
-            to="/registration"
-          >
-            register
+            contacts
           </Link>
         </Typography>
-      </Box>
+      ) : (
+        <Box
+          component="div"
+          sx={{
+            flexDirection: 'column',
+          }}
+        >
+          <Typography
+            variant="p"
+            sx={{
+              fontSize: '16px',
+              textAlign: 'center',
+            }}
+          >
+            Please
+            <Link
+              style={{
+                color: '#fff',
+                textDecoration: 'underline',
+                padding: '5px',
+              }}
+              to="/login"
+            >
+              log in
+            </Link>
+            to your account to view your contacts.
+          </Typography>
+          <Typography
+            variant="p"
+            sx={{
+              fontSize: '16px',
+              textAlign: 'center',
+            }}
+          >
+            If you are not registered yet, please
+            <Link
+              style={{
+                color: '#fff',
+                textDecoration: 'underline',
+                padding: '5px',
+              }}
+              to="/registration"
+            >
+              register
+            </Link>
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 };
