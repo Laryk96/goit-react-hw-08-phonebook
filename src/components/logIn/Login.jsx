@@ -1,28 +1,28 @@
 import { Typography } from '@mui/material';
+import {
+  Form,
+  StyledButton,
+  StyledInput,
+} from 'components/SignUp/SignUp.styled';
 import { useFormik } from 'formik';
-import { memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from 'redux/auth/operation';
-
-import { StyledButton, StyledInput, Form } from './SignUp.styled';
+import { login } from 'redux/auth/operation';
 
 const initialValues = {
-  name: '',
   email: '',
   password: '',
 };
 
-const SignUp = () => {
+const LogIn = () => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues,
     onSubmit: (values, { resetForm }) => {
-      dispatch(register(values));
+      dispatch(login(values));
       resetForm();
     },
   });
-
   return (
     <Form
       component="form"
@@ -32,26 +32,21 @@ const SignUp = () => {
     >
       <Typography
         variant="h3"
-        sx={{ marginBottom: '30px', textTransform: 'uppercase' }}
+        sx={{
+          marginBottom: '30px',
+          textAlign: 'center',
+          textTransform: 'uppercase',
+        }}
       >
-        Sign up
+        Log in
       </Typography>
 
       <StyledInput
         required
-        label="Username"
-        type="text"
-        name="name"
-        variant="standard"
-        onChange={formik.handleChange}
-        value={formik.values.name}
-      />
-      <StyledInput
-        required
-        variant="standard"
-        type="text"
-        name="email"
         label="Email"
+        type="email"
+        variant="standard"
+        name="email"
         onChange={formik.handleChange}
         value={formik.values.email}
       />
@@ -59,22 +54,18 @@ const SignUp = () => {
         required
         label="Password"
         type="password"
-        name="password"
         autoComplete="current-password"
         variant="standard"
         sx={{ mb: '10px' }}
+        name="password"
         onChange={formik.handleChange}
         value={formik.values.password}
       />
-      <StyledButton
-        type="submit"
-        variant="contained"
-        disabled={!(formik.isValid && formik.dirty)}
-      >
-        Create
+      <StyledButton type="submit" variant="contained">
+        Login
       </StyledButton>
     </Form>
   );
 };
 
-export default memo(SignUp);
+export default LogIn;

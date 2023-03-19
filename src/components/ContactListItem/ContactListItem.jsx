@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ItemBar from 'components/ItemBar/ItemBar';
 import Modal from 'components/Modal/Modal';
-import useFavorites from 'redux/hooks/useFavorites';
+import useFavorites from 'hooks/useFavorites';
 
 import {
   ContactItem,

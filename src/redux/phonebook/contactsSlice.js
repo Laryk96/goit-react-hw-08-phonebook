@@ -1,8 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://640dadb71a18a5db837c96a6.mockapi.io';
-
 const axiosBaseQuery =
   () =>
   async ({ url, method, data, params }) => {

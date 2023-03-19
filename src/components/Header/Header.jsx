@@ -1,10 +1,14 @@
-import { Button, Toolbar, Typography } from '@mui/material';
-import { Link, NavLink } from 'react-router-dom';
-import StarIcon from '@mui/icons-material/Star';
+import { Toolbar, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import { Header as AppBar } from './Header.styled';
+import UserMenu from 'components/UserMenu/UserMenu';
+import AuthNav from 'components/AuthNav/AuthNav';
+import { useAuth } from 'hooks/useAuth';
 
 const Header = () => {
+  const { isLoggedIn } = useAuth();
+
   return (
     <AppBar position="static">
       <Toolbar sx={{ gap: '10px' }}>
@@ -13,66 +17,7 @@ const Header = () => {
             HOME
           </Link>
         </Typography>
-        <Button
-          component={NavLink}
-          to="/favorites"
-          color="inherit"
-          sx={{
-            '&:hover': {
-              color: 'green',
-            },
-            '&:focus': {
-              color: 'green',
-            },
-          }}
-        >
-          <StarIcon />
-        </Button>
-        <Button
-          component={NavLink}
-          to="/contacts"
-          color="inherit"
-          sx={{
-            '&:hover': {
-              backgroundColor: '#590081',
-            },
-            '&:focus': {
-              backgroundColor: '#590081',
-            },
-          }}
-        >
-          Contacts
-        </Button>
-        <Button
-          component={NavLink}
-          to="/login"
-          color="inherit"
-          sx={{
-            '&:hover': {
-              backgroundColor: '#590081',
-            },
-            '&:focus': {
-              backgroundColor: '#590081',
-            },
-          }}
-        >
-          Login
-        </Button>
-        <Button
-          component={NavLink}
-          to="/registration"
-          color="inherit"
-          sx={{
-            '&:hover': {
-              backgroundColor: '#590081',
-            },
-            '&:focus': {
-              backgroundColor: '#590081',
-            },
-          }}
-        >
-          Sign Up
-        </Button>
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </Toolbar>
     </AppBar>
   );
