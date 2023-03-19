@@ -26,14 +26,14 @@ export const contactsApi = createApi({
     getContacts: build.query({
       query: () => ({
         url: `/contacts`,
-        method: 'get',
+        method: 'GET',
       }),
       providesTags: ['Contacts'],
     }),
     addContact: build.mutation({
       query: contact => ({
         url: `/contacts`,
-        method: 'post',
+        method: 'POST',
         data: contact,
       }),
       invalidatesTags: ['Contacts'],
@@ -41,15 +41,15 @@ export const contactsApi = createApi({
     deleteContact: build.mutation({
       query: id => ({
         url: `/contacts/${id}`,
-        method: 'delete',
+        method: 'DELETE',
       }),
       invalidatesTags: ['Contacts'],
     }),
     editContact: build.mutation({
-      query: data => ({
-        url: `/contacts/${data.id}`,
-        method: 'put',
-        data,
+      query: ({ id, name, number }) => ({
+        url: `/contacts/${id}`,
+        method: 'PATCH',
+        data: { name, number },
       }),
       invalidatesTags: ['Contacts'],
     }),

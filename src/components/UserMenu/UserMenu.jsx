@@ -1,8 +1,10 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import StarBorderPurple500TwoToneIcon from '@mui/icons-material/StarBorderPurple500TwoTone';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import MenuBookTwoToneIcon from '@mui/icons-material/MenuBookTwoTone';
 
-import { StarIcon } from 'components/ContactListItem/ContactListItem.styled';
 import { useAuth } from 'hooks/useAuth';
 import { logOut } from 'redux/auth/operation';
 
@@ -16,55 +18,88 @@ const UserMenu = () => {
   return (
     <Box
       component="div"
-      sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '40px',
+      }}
     >
-      <p>Hello, {user.name}</p>
-      <Button
-        component={NavLink}
-        to="/favorites"
-        color="inherit"
+      <Box
+        component="div"
         sx={{
-          '&:hover': {
-            color: 'green',
-          },
-          '&:focus': {
-            color: 'green',
-          },
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(255,255,255,0.1)',
+          borderRadius: '20px',
+          overflow: 'hidden',
+          height: '35px',
+          color: 'rgba(255,255,255,0.9)',
         }}
       >
-        <StarIcon />
-      </Button>
-      <Button
-        component={NavLink}
-        to="/contacts"
-        color="inherit"
+        <Button
+          component={NavLink}
+          to="/favorites"
+          sx={{
+            '&:hover': {
+              backgroundColor: 'rgba(0,0,0,4)',
+            },
+            '&:focus': {
+              backgroundColor: 'rgba(0,0,0,4)',
+            },
+
+            color: 'inherit',
+          }}
+        >
+          <StarBorderPurple500TwoToneIcon />
+        </Button>
+        <Button
+          component={NavLink}
+          to="/contacts"
+          sx={{
+            '&:hover': {
+              backgroundColor: 'rgba(0,0,0,2)',
+            },
+            '&:focus': {
+              backgroundColor: 'rgba(0,0,0,2)',
+            },
+            color: 'inherit',
+          }}
+        >
+          <MenuBookTwoToneIcon />
+        </Button>
+      </Box>
+      <Box
+        component="div"
         sx={{
-          '&:hover': {
-            backgroundColor: '#590081',
-          },
-          '&:focus': {
-            backgroundColor: '#590081',
-          },
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '5px',
         }}
       >
-        Contacts
-      </Button>
-      <Button
-        component={NavLink}
-        to="/contacts"
-        color="inherit"
-        sx={{
-          '&:hover': {
-            backgroundColor: '#590081',
-          },
-          '&:focus': {
-            backgroundColor: '#590081',
-          },
-        }}
-        onClick={handleLogOut}
-      >
-        logout
-      </Button>
+        <PermIdentityIcon />
+        <Typography variant="body1" sx={{ fontSize: '16px', lineHeight: 1.6 }}>
+          Hello, {user.name}
+        </Typography>
+      </Box>
+
+      <Box component="div">
+        <Button
+          component={Link}
+          to="/contacts"
+          color="inherit"
+          sx={{
+            display: 'block',
+            backgroundColor: 'rgba(255,255,255,0.1)',
+            padding: '8px 15px',
+            borderRadius: '10px',
+          }}
+          onClick={handleLogOut}
+        >
+          logout
+        </Button>
+      </Box>
     </Box>
   );
 };
