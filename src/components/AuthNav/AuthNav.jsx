@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const AuthNav = () => {
   return (
-    <Box>
+    <Box sx={{ display: 'flex', gap: '15px' }}>
       <Button
         component={NavLink}
         to="/login"
