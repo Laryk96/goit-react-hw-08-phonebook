@@ -25,11 +25,17 @@ import {
 import { useFormik } from 'formik';
 import isNewName from 'services/checkContactName';
 import { Label } from 'components/ContactForm/ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFavorites } from 'redux/phonebook/selectors';
+import { editFavorite } from 'redux/phonebook/favoritesSlice';
 
 const Modal = ({ id, name, number, onClose }) => {
+  const dispatch = useDispatch();
   const { data } = useGetContactsQuery();
   const [editContact, { isSuccess, isLoading, isUninitialized, isError }] =
     useEditContactMutation();
+  const isFavorites = useSelector(selectFavorites).find(x => x.id === id);
+
   const portal = document.getElementById('modal');
 
   const formik = useFormik({
@@ -44,6 +50,17 @@ const Modal = ({ id, name, number, onClose }) => {
           name: editedName ? editedName : name,
           number: editedPhone ? editedPhone : number,
         });
+
+        if (isFavorites) {
+          dispatch(
+            editFavorite({
+              id,
+              name: editedName ? editedName : name,
+              number: editedPhone ? editedPhone : number,
+            })
+          );
+        }
+
         resetForm();
       }
     },
