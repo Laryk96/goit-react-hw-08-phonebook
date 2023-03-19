@@ -3,41 +3,52 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { CircularProgress, Stack } from '@mui/material';
+import { CircularProgress, Stack, Tooltip } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import * as yup from 'yup';
 
 import { StyledInput } from 'components/SignUp/SignUp.styled';
 import { AvatarWrapper } from 'components/ContactListItem/ContactListItem.styled';
 import {
   Backdrop,
   CloseBtn,
-  ContactItem,
+  Fieldset,
   Icon,
   ModalBody,
   StyledButton,
 } from './Modal.styled';
-import { useEditContactMutation } from 'redux/phonebook/contactsSlice';
+import {
+  useEditContactMutation,
+  useGetContactsQuery,
+} from 'redux/phonebook/contactsSlice';
+import { useFormik } from 'formik';
+import isNewName from 'services/checkContactName';
+import { Label } from 'components/ContactForm/ContactForm.styled';
 
 const Modal = ({ id, name, number, onClose }) => {
+  const { data } = useGetContactsQuery();
   const [editContact, { isSuccess, isLoading, isUninitialized, isError }] =
     useEditContactMutation();
-
   const portal = document.getElementById('modal');
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const input = e.currentTarget.elements;
-    const editedName = input.name.value.trim();
-    const editedPhone = input.number.value.trim();
+  const formik = useFormik({
+    initialValues,
+    onSubmit: (values, { resetForm }) => {
+      const editedName = values.name.trim();
+      const editedPhone = values.number.trim();
 
-    editContact({
-      id,
-      name: editedName ? editedName : name,
-      number: editedPhone ? editedPhone : number,
-    });
-    e.currentTarget.reset();
-  };
+      if (isNewName(data, values.name)) {
+        editContact({
+          id,
+          name: editedName ? editedName : name,
+          number: editedPhone ? editedPhone : number,
+        });
+        resetForm();
+      }
+    },
+    validationSchema: schema,
+  });
 
   useEffect(() => {
     if (!isUninitialized) {
@@ -60,6 +71,8 @@ const Modal = ({ id, name, number, onClose }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
+  const isDisabled = !(formik.isValid && formik.dirty);
+
   return ReactDOM.createPortal(
     <Backdrop onClick={() => onClose(false)}>
       <ModalBody onClick={e => e.stopPropagation()}>
@@ -74,11 +87,11 @@ const Modal = ({ id, name, number, onClose }) => {
             style={{ borderRadius: '50%' }}
           />
         </AvatarWrapper>
-        <ContactItem>
+        <Fieldset>
           <p>{name}</p>
 
           <span>{number}</span>
-        </ContactItem>
+        </Fieldset>
         {isUninitialized && (
           <ArrowDownwardIcon
             sx={{ fontSize: 80, color: '#fff', marginBottom: '-20px' }}
@@ -97,31 +110,49 @@ const Modal = ({ id, name, number, onClose }) => {
         {isError && <WarningAmberIcon sx={{ fontSize: 70, color: 'red' }} />}
         <Box
           component="form"
-          onSubmit={handleSubmit}
+          onSubmit={formik.handleSubmit}
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
           }}
         >
-          <ContactItem>
-            <StyledInput
-              label="Name"
-              name="name"
-              type="text"
-              variant="outlined"
-              sx={{ width: '35%' }}
-            />
+          <Fieldset>
+            <Tooltip title={formik.errors.name}>
+              <Label>
+                <StyledInput
+                  label="Name"
+                  name="name"
+                  type="text"
+                  variant="outlined"
+                  // sx={{ width: '35%' }}
+                  onChange={formik.handleChange}
+                  value={formik.values.name}
+                />
+                {formik.errors.name && formik.touched.name ? (
+                  <span>{formik.errors.name}</span>
+                ) : null}
+              </Label>
+            </Tooltip>
 
-            <StyledInput
-              name="number"
-              label="Phone"
-              type="text"
-              variant="outlined"
-              sx={{ width: '35%' }}
-            />
-          </ContactItem>
-          <StyledButton type="submit">
+            <Tooltip title={formik.errors.number}>
+              <Label>
+                <StyledInput
+                  name="number"
+                  label="Phone"
+                  type="text"
+                  variant="outlined"
+                  // sx={{ width: '35%' }}
+                  onChange={formik.handleChange}
+                  value={formik.values.number}
+                />
+                {formik.errors.number && formik.touched.number ? (
+                  <span>{formik.errors.number}</span>
+                ) : null}
+              </Label>
+            </Tooltip>
+          </Fieldset>
+          <StyledButton type="submit" disabled={isDisabled}>
             <CheckCircleIcon sx={{ fontSize: 50, color: 'inherit' }} />
           </StyledButton>
         </Box>
@@ -129,6 +160,25 @@ const Modal = ({ id, name, number, onClose }) => {
     </Backdrop>,
     portal
   );
+};
+
+const pattern = {
+  str: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+  number: '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
+};
+
+const schema = yup.object().shape({
+  name: yup
+    .string()
+    .matches(pattern.str, 'Name must be a string')
+    .min(3, 'to short, min: 3')
+    .max(20, 'to long, max: 20'),
+
+  number: yup.number().typeError().moreThan(12),
+});
+const initialValues = {
+  name: '',
+  number: '',
 };
 
 export default Modal;

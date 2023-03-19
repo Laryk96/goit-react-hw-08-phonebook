@@ -28,12 +28,13 @@ const ModalBody = styled.div`
   align-items: center;
 `;
 
-const ContactItem = styled.div`
+const Fieldset = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
   text-align: center;
-  width: 100%;
+  width: 90%;
+  gap: 20px;
 
   color: #ffff;
   border-radius: 15px;
@@ -73,4 +74,4 @@ const Icon = styled(CloseIcon)`
   }
 `;
 
-export { Backdrop, ModalBody, ContactItem, StyledButton, CloseBtn, Icon };
+export { Backdrop, ModalBody, Fieldset, StyledButton, CloseBtn, Icon };
