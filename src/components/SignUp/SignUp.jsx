@@ -6,6 +6,7 @@ import * as yup from 'yup';
 
 import { register } from 'redux/auth/operation';
 import { StyledButton, StyledInput, Form } from './SignUp.styled';
+import { Label } from 'components/ContactForm/ContactForm.styled';
 
 const initialValues = {
   name: '',
@@ -55,35 +56,44 @@ const SignUp = () => {
         Sign up
       </Typography>
 
-      <StyledInput
-        required
-        label="Username"
-        type="text"
-        name="name"
-        variant="standard"
-        onChange={formik.handleChange}
-        value={formik.values.name}
-      />
-      <StyledInput
-        required
-        variant="standard"
-        type="text"
-        name="email"
-        label="Email"
-        onChange={formik.handleChange}
-        value={formik.values.email}
-      />
-      <StyledInput
-        required
-        label="Password"
-        type="password"
-        name="password"
-        autoComplete="current-password"
-        variant="standard"
-        sx={{ mb: '10px' }}
-        onChange={formik.handleChange}
-        value={formik.values.password}
-      />
+      <Label>
+        <StyledInput
+          required
+          label="Username"
+          type="text"
+          name="name"
+          variant="standard"
+          onChange={formik.handleChange}
+          value={formik.values.name}
+        />
+        {formik.errors.name ? <p>{formik.errors.name}</p> : null}
+      </Label>
+      <Label>
+        <StyledInput
+          required
+          variant="standard"
+          type="text"
+          name="email"
+          label="Email"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+        />
+        {formik.errors.email ? <p>{formik.errors.email}</p> : null}
+      </Label>
+      <Label>
+        <StyledInput
+          required
+          label="Password"
+          type="password"
+          name="password"
+          autoComplete="current-password"
+          variant="standard"
+          sx={{ mb: '10px' }}
+          onChange={formik.handleChange}
+          value={formik.values.password}
+        />
+        {formik.errors.password ? <p>{formik.errors.password}</p> : null}
+      </Label>
       <StyledButton
         type="submit"
         variant="contained"

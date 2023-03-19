@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 
 import { login } from 'redux/auth/operation';
+import { Label } from 'components/ContactForm/ContactForm.styled';
 
 const initialValues = {
   email: '',
@@ -56,26 +57,32 @@ const LogIn = () => {
         Log in
       </Typography>
 
-      <StyledInput
-        required
-        label="Email"
-        type="email"
-        variant="standard"
-        name="email"
-        onChange={formik.handleChange}
-        value={formik.values.email}
-      />
-      <StyledInput
-        required
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        variant="standard"
-        sx={{ mb: '10px' }}
-        name="password"
-        onChange={formik.handleChange}
-        value={formik.values.password}
-      />
+      <Label>
+        <StyledInput
+          required
+          label="Email"
+          type="email"
+          variant="standard"
+          name="email"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+        />
+        {formik.errors.email ? <p>{formik.errors.email}</p> : null}
+      </Label>
+      <Label>
+        <StyledInput
+          required
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          variant="standard"
+          sx={{ mb: '10px' }}
+          name="password"
+          onChange={formik.handleChange}
+          value={formik.values.password}
+        />
+        {formik.errors.password ? <p>{formik.errors.password}</p> : null}
+      </Label>
       <StyledButton
         type="submit"
         variant="contained"
