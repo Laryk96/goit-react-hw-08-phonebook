@@ -106,8 +106,9 @@ const Modal = ({ id, name, number, onClose }) => {
         </AvatarBgd>
         <Fieldset
           style={{
-            border: '1px solid  rgba(255, 255, 255, 0.4)',
-            padding: '10px 5px',
+            border: '1px solid  rgba(255, 255, 255, 0.3)',
+            padding: '15px 5px',
+            marginBottom: '-20px',
           }}
         >
           <p>{name}</p>

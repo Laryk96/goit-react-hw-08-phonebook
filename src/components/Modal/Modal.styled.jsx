@@ -24,6 +24,7 @@ const ModalBody = styled.div`
   gap: 70px;
   width: 540px;
   padding: 30px 0 10px 0;
+
   background-color: #212121;
   border-radius: 20px;
   align-items: center;
