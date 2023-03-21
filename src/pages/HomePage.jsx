@@ -3,6 +3,7 @@ import { useAuth } from 'hooks/useAuth';
 import { routsPath } from 'path/routs';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { SEO } from 'services/SEO';
 import Typed from 'typed.js';
 
 const { logIn, signUp } = routsPath;
@@ -23,6 +24,7 @@ const HomePage = () => {
 
   return (
     <Box component="section">
+      <SEO title="Phonebook manager" description="Your phone book manager" />
       <Box
         component="div"
         sx={{
