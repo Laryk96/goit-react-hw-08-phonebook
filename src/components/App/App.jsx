@@ -1,12 +1,13 @@
 import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import MainLayout from 'MainLayout/MainLayout';
-import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/operation';
 import { useAuth } from 'hooks/useAuth';
 import { RestrictedRoute } from 'routes/RestrictedRooute';
 import { PrivateRoute } from 'routes/ProvateRoute';
+import { routsPath, redirectPath } from 'path/routs.js';
 
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
 const HomePage = lazy(() => import('pages/HomePage'));
@@ -14,9 +15,13 @@ const FavoritePage = lazy(() => import('pages/FavoritesPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 
+const { home, logIn, signUp, contacts, favorites } = routsPath;
+const { toLogIn, toContacts } = redirectPath;
+
 const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
+
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -24,34 +29,34 @@ const App = () => {
   return (
     !isRefreshing && (
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path={home} element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route
-            path="/registration"
+            path={signUp}
             element={
               <RestrictedRoute
                 component={RegistrationPage}
-                redirectTo="/contacts"
+                redirectTo={toContacts}
               />
             }
           />
           <Route
-            path="/login"
+            path={logIn}
             element={
-              <RestrictedRoute component={LoginPage} redirectTo="/contacts" />
+              <RestrictedRoute component={LoginPage} redirectTo={toContacts} />
             }
           />
 
           <Route
-            path="/contacts"
+            path={contacts}
             element={
-              <PrivateRoute component={ContactsPage} redirectTo="/login" />
+              <PrivateRoute component={ContactsPage} redirectTo={toLogIn} />
             }
           />
           <Route
-            path="/favorites"
+            path={favorites}
             element={
-              <PrivateRoute component={FavoritePage} redirectTo="/login" />
+              <PrivateRoute component={FavoritePage} redirectTo={toLogIn} />
             }
           />
         </Route>

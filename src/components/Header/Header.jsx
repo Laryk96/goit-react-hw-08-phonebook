@@ -5,6 +5,8 @@ import { Header as AppBar } from './Header.styled';
 import UserMenu from 'components/UserMenu/UserMenu';
 import AuthNav from 'components/AuthNav/AuthNav';
 import { useAuth } from 'hooks/useAuth';
+import { memo } from 'react';
+import { routsPath } from 'path/routs';
 
 const Header = () => {
   const { isLoggedIn } = useAuth();
@@ -13,7 +15,7 @@ const Header = () => {
     <AppBar position="static">
       <Toolbar sx={{ gap: '10px' }}>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link style={{ color: 'white' }} to="/">
+          <Link style={{ color: 'white' }} to={routsPath.home}>
             HOME
           </Link>
         </Typography>
@@ -24,4 +26,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

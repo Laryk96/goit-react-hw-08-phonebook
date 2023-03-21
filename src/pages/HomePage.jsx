@@ -1,8 +1,11 @@
 import { Box, Typography } from '@mui/material';
 import { useAuth } from 'hooks/useAuth';
+import { routsPath } from 'path/routs';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Typed from 'typed.js';
+
+const { logIn, signUp } = routsPath;
 
 const HomePage = () => {
   const el = useRef(null);
@@ -59,7 +62,7 @@ const HomePage = () => {
       </Box>
       {isLoggedIn ? (
         <Typography variant="body1">
-          You can view your{' '}
+          You can view your
           <Link
             to="/contacts"
             style={{ color: '#fff', textDecoration: 'underline' }}
@@ -88,7 +91,7 @@ const HomePage = () => {
                 textDecoration: 'underline',
                 padding: '5px',
               }}
-              to="/login"
+              to={logIn}
             >
               log in
             </Link>
@@ -108,7 +111,7 @@ const HomePage = () => {
                 textDecoration: 'underline',
                 padding: '5px',
               }}
-              to="/registration"
+              to={signUp}
             >
               register
             </Link>

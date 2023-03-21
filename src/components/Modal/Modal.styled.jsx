@@ -21,8 +21,9 @@ const ModalBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 50px;
-  padding: 30px 20px 20px 20px;
+  gap: 70px;
+  width: 540px;
+  padding: 30px 0 10px 0;
   background-color: #212121;
   border-radius: 20px;
   align-items: center;
@@ -32,7 +33,7 @@ const Fieldset = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  text-align: center;
+  align-items: center;
   width: 90%;
   gap: 20px;
 
@@ -74,4 +75,49 @@ const Icon = styled(CloseIcon)`
   }
 `;
 
-export { Backdrop, ModalBody, Fieldset, StyledButton, CloseBtn, Icon };
+const Input = styled.input`
+  width: 100%;
+  height: 50px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  outline: yellow;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  color: white;
+  padding-left: 20px;
+  &:placeholder-shown &:focus,
+  &:hover {
+    border: 2px solid white;
+  }
+
+  &:placeholder-shown {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+  }
+`;
+
+const AvatarBgd = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: flex-start;
+  margin-bottom: -20px;
+  border-radius: 50%;
+  background-color: grey;
+`;
+
+export {
+  Backdrop,
+  ModalBody,
+  Fieldset,
+  StyledButton,
+  CloseBtn,
+  Icon,
+  Input,
+  AvatarBgd,
+};

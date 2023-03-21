@@ -1,13 +1,16 @@
 import { Button } from '@mui/material';
 import { Box } from '@mui/system';
+import { routsPath } from 'path/routs';
 import { NavLink } from 'react-router-dom';
+
+const { logIn, signUp } = routsPath;
 
 const AuthNav = () => {
   return (
     <Box sx={{ display: 'flex', gap: '15px' }}>
       <Button
         component={NavLink}
-        to="/login"
+        to={logIn}
         color="inherit"
         sx={{
           '&:hover': {
@@ -22,7 +25,7 @@ const AuthNav = () => {
       </Button>
       <Button
         component={NavLink}
-        to="/registration"
+        to={signUp}
         color="inherit"
         sx={{
           '&:hover': {

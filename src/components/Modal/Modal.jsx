@@ -8,15 +8,15 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import * as yup from 'yup';
 
-import { StyledInput } from 'components/SignUp/SignUp.styled';
-import { AvatarWrapper } from 'components/ContactListItem/ContactListItem.styled';
 import {
   Backdrop,
   CloseBtn,
   Fieldset,
   Icon,
   ModalBody,
+  Input,
   StyledButton,
+  AvatarBgd,
 } from './Modal.styled';
 import {
   useEditContactMutation,
@@ -96,15 +96,20 @@ const Modal = ({ id, name, number, onClose }) => {
         <CloseBtn onClick={() => onClose(false)}>
           <Icon />
         </CloseBtn>
-        <AvatarWrapper>
+        <AvatarBgd>
           <img
             src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
             alt="avatar"
             width={70}
             style={{ borderRadius: '50%' }}
           />
-        </AvatarWrapper>
-        <Fieldset>
+        </AvatarBgd>
+        <Fieldset
+          style={{
+            border: '1px solid  rgba(255, 255, 255, 0.4)',
+            padding: '10px 5px',
+          }}
+        >
           <p>{name}</p>
 
           <span>{number}</span>
@@ -137,12 +142,11 @@ const Modal = ({ id, name, number, onClose }) => {
           <Fieldset>
             <Tooltip title={formik.errors.name}>
               <Label>
-                <StyledInput
-                  label="Name"
+                <Input
+                  placeholder="Name"
                   name="name"
                   type="text"
                   variant="outlined"
-                  // sx={{ width: '35%' }}
                   onChange={formik.handleChange}
                   value={formik.values.name}
                 />
@@ -154,14 +158,15 @@ const Modal = ({ id, name, number, onClose }) => {
 
             <Tooltip title={formik.errors.number}>
               <Label>
-                <StyledInput
+                <Input
+                  autoComplete="off"
                   name="number"
-                  label="Phone"
+                  placeholder="Phone"
                   type="tel"
                   variant="outlined"
-                  // sx={{ width: '35%' }}
                   onChange={formik.handleChange}
                   value={formik.values.number}
+                  pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                 />
                 {formik.errors.number && formik.touched.number ? (
                   <span>{formik.errors.number}</span>
