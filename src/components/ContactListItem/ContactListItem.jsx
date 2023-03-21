@@ -21,7 +21,7 @@ const ContactListItem = ({ id, name, number }) => {
   const handleAddFavorites = e => {
     dispatch(toggleAction({ id, name, number }));
   };
-  console.log(status);
+
   return (
     <>
       <ContactItem>

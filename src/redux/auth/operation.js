@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Notiflix from 'notiflix';
 import { clearAuthHeader, setAuthHeader } from 'services/axiosSet';
 import { initialAuthState } from './authSlice';
 
@@ -24,8 +25,13 @@ export const login = createAsyncThunk(
       const response = await axios.post('/users/login', credentials);
 
       setAuthHeader(response.data.token);
+
       return response.data;
     } catch (error) {
+      Notiflix.Notify.warning(`You entered an incorrect username or password`, {
+        position: 'center-top',
+        timeout: 5000,
+      });
       return rejectWithValue(error.message);
     }
   }
