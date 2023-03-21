@@ -8,9 +8,11 @@ const MainLayout = () => {
   return (
     <Suspense fallback={<h2>Loading...</h2>}>
       <Header />
-      <Container>
-        <Outlet />
-      </Container>
+      <main>
+        <Container>
+          <Outlet />
+        </Container>
+      </main>
     </Suspense>
   );
 };

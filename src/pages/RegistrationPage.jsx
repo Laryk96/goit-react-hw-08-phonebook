@@ -3,9 +3,11 @@ import { Container } from 'components/SignUp/SignUp.styled';
 
 const RegistrationPage = () => {
   return (
-    <Container component="div">
-      <SignUp />
-    </Container>
+    <section>
+      <Container component="div">
+        <SignUp />
+      </Container>
+    </section>
   );
 };
 

@@ -22,102 +22,103 @@ const HomePage = () => {
   });
 
   return (
-    <Box
-      component="div"
-      className="wrapper books"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        width: '100%',
-
-        padding: '20px 100px',
-        color: '#fff',
-      }}
-    >
-      <Typography
-        variant="h1"
+    <Box component="section">
+      <Box
+        component="div"
         sx={{
-          fontSize: '50px',
-          textAlign: 'center',
-          fontWeight: '700',
-          width: '650px',
-          mb: '10px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+          width: '100%',
+
+          padding: '20px 100px',
+          color: '#fff',
         }}
       >
-        Welcome to the Phonebook
-      </Typography>
-      <Box component="div" sx={{ mb: '40px', height: '60px' }}>
         <Typography
-          variant="span"
+          variant="h1"
           sx={{
-            display: 'inline',
-            fontSize: '46px',
-            fontWeight: '500',
-          }}
-          ref={el}
-        ></Typography>
-      </Box>
-      {isLoggedIn ? (
-        <Typography variant="body1">
-          You can view your
-          <Link
-            to="/contacts"
-            style={{ color: '#fff', textDecoration: 'underline' }}
-          >
-            contacts
-          </Link>
-        </Typography>
-      ) : (
-        <Box
-          component="div"
-          sx={{
-            flexDirection: 'column',
+            fontSize: '50px',
+            textAlign: 'center',
+            fontWeight: '700',
+            width: '650px',
+            mb: '10px',
           }}
         >
+          Welcome to the Phonebook
+        </Typography>
+        <Box component="div" sx={{ mb: '40px', height: '60px' }}>
           <Typography
-            variant="p"
+            variant="span"
             sx={{
-              fontSize: '16px',
-              textAlign: 'center',
+              display: 'inline',
+              fontSize: '46px',
+              fontWeight: '500',
             }}
-          >
-            Please
-            <Link
-              style={{
-                color: '#fff',
-                textDecoration: 'underline',
-                padding: '5px',
-              }}
-              to={logIn}
-            >
-              log in
-            </Link>
-            to your account to view your contacts.
-          </Typography>
-          <Typography
-            variant="p"
-            sx={{
-              fontSize: '16px',
-              textAlign: 'center',
-            }}
-          >
-            If you are not registered yet, please
-            <Link
-              style={{
-                color: '#fff',
-                textDecoration: 'underline',
-                padding: '5px',
-              }}
-              to={signUp}
-            >
-              register
-            </Link>
-          </Typography>
+            ref={el}
+          ></Typography>
         </Box>
-      )}
+        {isLoggedIn ? (
+          <Typography variant="body1">
+            You can view your
+            <Link
+              to="/contacts"
+              style={{ color: '#fff', textDecoration: 'underline' }}
+            >
+              contacts
+            </Link>
+          </Typography>
+        ) : (
+          <Box
+            component="div"
+            sx={{
+              flexDirection: 'column',
+            }}
+          >
+            <Typography
+              variant="p"
+              sx={{
+                fontSize: '16px',
+                textAlign: 'center',
+              }}
+            >
+              Please
+              <Link
+                style={{
+                  color: '#fff',
+                  textDecoration: 'underline',
+                  padding: '5px',
+                }}
+                to={logIn}
+              >
+                log in
+              </Link>
+              to your account to view your contacts.
+            </Typography>
+            <Typography
+              variant="p"
+              sx={{
+                fontSize: '16px',
+                textAlign: 'center',
+              }}
+            >
+              If you are not registered yet, please
+              <Link
+                style={{
+                  color: '#fff',
+                  textDecoration: 'underline',
+                  padding: '5px',
+                }}
+                to={signUp}
+              >
+                register
+              </Link>
+            </Typography>
+          </Box>
+        )}
+      </Box>
     </Box>
   );
 };
