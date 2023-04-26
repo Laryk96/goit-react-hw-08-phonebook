@@ -5,7 +5,7 @@ import { Header as AppBar } from './Header.styled';
 import UserMenu from 'components/UserMenu/UserMenu';
 import AuthNav from 'components/AuthNav/AuthNav';
 import { useAuth } from 'hooks/useAuth';
-import { memo } from 'react';
+
 import { routsPath } from 'path/routs';
 
 const Header = () => {
@@ -28,4 +28,4 @@ const Header = () => {
   );
 };
 
-export default memo(Header);
+export default Header;

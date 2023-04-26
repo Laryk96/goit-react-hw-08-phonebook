@@ -6,14 +6,16 @@ import { Container } from './MainLayout.styled';
 
 const MainLayout = () => {
   return (
-    <Suspense fallback={<h2>Loading...</h2>}>
+    <>
       <Header />
       <main>
         <Container>
-          <Outlet />
+          <Suspense fallback={<h2>Loading...</h2>}>
+            <Outlet />
+          </Suspense>
         </Container>
       </main>
-    </Suspense>
+    </>
   );
 };
 

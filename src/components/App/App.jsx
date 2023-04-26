@@ -11,8 +11,8 @@ import { RestrictedRoute } from 'routes/RestrictedRooute';
 import { PrivateRoute } from 'routes/ProvateRoute';
 import { routsPath, redirectPath } from 'path/routs.js';
 
-const ContactsPage = lazy(() => import('pages/ContactsPage'));
 const HomePage = lazy(() => import('pages/HomePage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
 const FavoritePage = lazy(() => import('pages/FavoritesPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
